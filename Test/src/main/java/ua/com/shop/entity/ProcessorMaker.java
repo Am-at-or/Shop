@@ -4,33 +4,20 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class ProcessorMaker {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class ProcessorMaker extends AbstractEntity {
+
 	private String maker;
-	@OneToMany(mappedBy="maker", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "maker", fetch = FetchType.LAZY)
 	private List<Processor> processors;
-	
+
 	public ProcessorMaker() {
 	}
 
 	public ProcessorMaker(String maker) {
 		this.maker = maker;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getMaker() {
@@ -48,5 +35,5 @@ public class ProcessorMaker {
 	public void setProcessors(List<Processor> processors) {
 		this.processors = processors;
 	}
-	
+
 }

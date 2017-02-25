@@ -4,20 +4,15 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Processor {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class Processor extends AbstractEntity {
+
 	@ManyToOne
 	private ProcessorMaker maker;
-	private String name;
+	private String model;
 	private int frequency;
 	@ManyToOne
 	private NumberOfCores numberOfCores;
@@ -25,19 +20,6 @@ public class Processor {
 	private List<Phone> phones;
 
 	public Processor() {
-	}
-
-	public Processor(String name, int frequency) {
-		this.name = name;
-		this.frequency = frequency;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public ProcessorMaker getMaker() {
@@ -48,12 +30,12 @@ public class Processor {
 		this.maker = maker;
 	}
 
-	public String getName() {
-		return name;
+	public String getModel() {
+		return model;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
 	public int getFrequency() {

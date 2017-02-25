@@ -6,10 +6,12 @@
 			<li><a href="/admin/maker">Add Maker</a></li>
 			<li><a href="/admin/display">Add Display</a></li>
 			<li><a href="/admin/displaysize">Add Display Size</a></li>
-			<li><a href="/admin/displaytechnology">Add Display Technology</a></li>
 			<li><a href="/admin/displaywidth">Add Display Width</a></li>
 			<li><a href="/admin/displayheight">Add Display Height</a></li>
+			<li><a href="/admin/displaytechnology">Add Display Technology</a></li>
 			<li><a href="/admin/processor">Add Processor</a></li>
+			<li><a href="/admin/processormaker">Add Processor Maker</a></li>
+			<li><a href="/admin/numberofcores">Add The Number Of Processor Cores</a></li>
 			<li><a href="/admin/operatingsystem">Add Operating System</a></li>
 			<li><a href="/admin/comment">Add Comment</a></li>
 			<li><a href="/admin/phone">Add Phone</a></li>
