@@ -4,16 +4,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Color {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class Color extends AbstractEntity {
+
 	private String color;
 	@OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
 	private List<Phone> phones;
@@ -23,14 +18,6 @@ public class Color {
 
 	public Color(String color) {
 		this.color = color;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getColor() {

@@ -4,12 +4,13 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div class="row">
 	<div class="col-md-12 col-xs-12">
-		<form:form class="form-horizontal" action="/admin/maker" method="POST"
-			modelAttribute="maker">
+		<form:form class="form-horizontal" action="/admin/osname"
+			method="POST" modelAttribute="osname">
 			<div class="form-group">
-				<label for="maker" class="col-sm-2 control-label">Maker</label>
+				<label for="osname" class="col-sm-2 control-label">Operating
+					System Name</label>
 				<div class="col-sm-10">
-					<form:input class="form-control" path="name" id="maker" />
+					<form:input class="form-control" path="name" id="osname" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -22,7 +23,7 @@
 </div>
 <div class="row">
 	<div class="col-md-4 col-xs-4">
-		<h3>Maker</h3>
+		<h3>Operating System Name</h3>
 	</div>
 	<div class="col-md-4 col-xs-4">
 		<h3>Update</h3>
@@ -31,14 +32,14 @@
 		<h3>Delete</h3>
 	</div>
 </div>
-<c:forEach items="${makers}" var="maker">
+<c:forEach items="${osnames}" var="osname">
 	<div class="row">
-		<div class="col-md-4 col-xs-4">${maker.name}</div>
+		<div class="col-md-4 col-xs-4">${osname.name}</div>
 		<div class="col-md-4 col-xs-4">
-			<a class="btn btn-warning" href="/admin/maker/update/${maker.id}">update</a>
+			<a class="btn btn-warning" href="/admin/osname/update/${osname.id}">update</a>
 		</div>
 		<div class="col-md-4 col-xs-4">
-			<a class="btn btn-danger" href="/admin/maker/delete/${maker.id}">delete</a>
+			<a class="btn btn-danger" href="/admin/osname/delete/${osname.id}">delete</a>
 		</div>
 	</div>
 </c:forEach>

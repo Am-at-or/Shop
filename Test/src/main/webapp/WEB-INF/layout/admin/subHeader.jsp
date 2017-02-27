@@ -13,6 +13,8 @@
 			<li><a href="/admin/processormaker">Add Processor Maker</a></li>
 			<li><a href="/admin/numberofcores">Add The Number Of Processor Cores</a></li>
 			<li><a href="/admin/operatingsystem">Add Operating System</a></li>
+			<li><a href="/admin/osname">Add Operating System Name</a></li>
+			<li><a href="/admin/color">Add Color</a></li>
 			<li><a href="/admin/comment">Add Comment</a></li>
 			<li><a href="/admin/phone">Add Phone</a></li>
 			<li><a href="/admin/user">Add User</a></li>

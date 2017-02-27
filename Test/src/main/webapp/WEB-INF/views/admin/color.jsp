@@ -4,12 +4,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div class="row">
 	<div class="col-md-12 col-xs-12">
-		<form:form class="form-horizontal" action="/admin/maker" method="POST"
-			modelAttribute="maker">
+		<form:form class="form-horizontal" action="/admin/color" method="POST"
+			modelAttribute="color">
 			<div class="form-group">
-				<label for="maker" class="col-sm-2 control-label">Maker</label>
+				<label for="color" class="col-sm-2 control-label">Color</label>
 				<div class="col-sm-10">
-					<form:input class="form-control" path="name" id="maker" />
+					<form:input class="form-control" path="color" id="color" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -22,7 +22,7 @@
 </div>
 <div class="row">
 	<div class="col-md-4 col-xs-4">
-		<h3>Maker</h3>
+		<h3>Color</h3>
 	</div>
 	<div class="col-md-4 col-xs-4">
 		<h3>Update</h3>
@@ -31,14 +31,14 @@
 		<h3>Delete</h3>
 	</div>
 </div>
-<c:forEach items="${makers}" var="maker">
+<c:forEach items="${colors}" var="color">
 	<div class="row">
-		<div class="col-md-4 col-xs-4">${maker.name}</div>
+		<div class="col-md-4 col-xs-4">${color.color}</div>
 		<div class="col-md-4 col-xs-4">
-			<a class="btn btn-warning" href="/admin/maker/update/${maker.id}">update</a>
+			<a class="btn btn-warning" href="/admin/color/update/${color.id}">update</a>
 		</div>
 		<div class="col-md-4 col-xs-4">
-			<a class="btn btn-danger" href="/admin/maker/delete/${maker.id}">delete</a>
+			<a class="btn btn-danger" href="/admin/color/delete/${color.id}">delete</a>
 		</div>
 	</div>
 </c:forEach>

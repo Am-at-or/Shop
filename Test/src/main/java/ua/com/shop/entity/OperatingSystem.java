@@ -4,17 +4,12 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class OperatingSystem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class OperatingSystem extends AbstractEntity {
+
 	@ManyToOne
 	private OSName name;
 	private double version;
@@ -26,14 +21,6 @@ public class OperatingSystem {
 
 	public OperatingSystem(double version) {
 		this.version = version;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public OSName getName() {

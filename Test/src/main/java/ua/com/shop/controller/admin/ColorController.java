@@ -11,48 +11,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.shop.entity.DisplayHeight;
-import ua.com.shop.service.DisplayHeightService;
+import ua.com.shop.entity.Color;
+import ua.com.shop.service.ColorService;
 
 @Controller
-@RequestMapping("/admin/displayheight")
-@SessionAttributes("displayheight")
-public class DisplayHeightController {
-	
-	@Autowired
-	private DisplayHeightService displayHeightService;
+@RequestMapping("/admin/color")
+@SessionAttributes("color")
+public class ColorController {
 
-	@ModelAttribute("displayheight")
-	public DisplayHeight getForm() {
-		return new DisplayHeight();
+	@Autowired
+	private ColorService colorService;
+
+	@ModelAttribute("color")
+	public Color getForm() {
+		return new Color();
 	}
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("displayheights", displayHeightService.findAll());
-		return "admin-displayheight";
+		model.addAttribute("colors", colorService.findAll());
+		return "admin-color";
 	}
 
 	@PostMapping
-	public String save(
-			@ModelAttribute("displayheight") DisplayHeight displayHeight,
+	public String save(@ModelAttribute("color") Color color,
 			SessionStatus status) {
-		displayHeightService.save(displayHeight);
+		colorService.save(color);
 		status.setComplete();
-		return "redirect:/admin/displayheight";
+		return "redirect:/admin/color";
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model) {
-		model.addAttribute("displayheight", displayHeightService.findOne(id));
+		model.addAttribute("color", colorService.findOne(id));
 		show(model);
-		return "admin-displayheight";
+		return "admin-color";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable int id) {
-		displayHeightService.delete(id);
-		return "redirect:/admin/displayheight";
+		colorService.delete(id);
+		return "redirect:/admin/color";
 	}
 
 }
