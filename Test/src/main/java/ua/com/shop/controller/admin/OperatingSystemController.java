@@ -1,8 +1,11 @@
 package ua.com.shop.controller.admin;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -13,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.com.shop.dto.form.OperatingSystemForm;
 import ua.com.shop.editor.OSNameEditor;
 import ua.com.shop.entity.OSName;
-import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.service.OSNameService;
 import ua.com.shop.service.OperatingSystemService;
+import ua.com.shop.validator.OperatingSystemValidator;
 
 @Controller
 @RequestMapping("/admin/operatingsystem")
@@ -34,11 +38,12 @@ public class OperatingSystemController {
 	protected void bind(WebDataBinder binder) {
 		binder.registerCustomEditor(OSName.class, new OSNameEditor(
 				osNameService));
+		binder.setValidator(new OperatingSystemValidator(operatingSystemService));
 	}
 
 	@ModelAttribute("operatingsystem")
-	public OperatingSystem getForm() {
-		return new OperatingSystem();
+	public OperatingSystemForm getForm() {
+		return new OperatingSystemForm();
 	}
 
 	@RequestMapping
@@ -50,9 +55,13 @@ public class OperatingSystemController {
 
 	@PostMapping
 	public String save(
-			@ModelAttribute("operatingsystem") OperatingSystem operatingSystem,
-			SessionStatus status) {
-		operatingSystemService.save(operatingSystem);
+			@ModelAttribute("operatingsystem") @Valid OperatingSystemForm operatingSystemForm,
+			BindingResult br, Model model, SessionStatus status) {
+		if (br.hasErrors())
+			return show(model);
+		operatingSystemForm.setVersion(operatingSystemForm.getVersion()
+				.replace(",", "."));
+		operatingSystemService.save(operatingSystemForm);
 		status.setComplete();
 		return "redirect:/admin/operatingsystem";
 	}
@@ -60,7 +69,7 @@ public class OperatingSystemController {
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model) {
 		model.addAttribute("operatingsystem",
-				operatingSystemService.findOne(id));
+				operatingSystemService.findForm(id));
 		show(model);
 		return "admin-operatingsystem";
 	}

@@ -40,7 +40,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 
 	@Override
 	public Processor findUnique(ProcessorMaker processorMakerId, String model,
-			int frequency, NumberOfCores numberOfCoresId) {
+			String frequency, NumberOfCores numberOfCoresId) {
 		return processorDao.findUnique(processorMakerId.getId(), model,
 				frequency, numberOfCoresId.getId());
 	}
@@ -64,6 +64,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		entity.setMaker(form.getMaker());
 		entity.setModel(form.getModel());
 		entity.setFrequency(form.getFrequency());
+		entity.setNumberOfCores(form.getNumberOfCores());
 		processorDao.save(entity);
 	}
 

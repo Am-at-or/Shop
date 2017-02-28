@@ -7,6 +7,11 @@
 		<form:form class="form-horizontal" action="/admin/osname"
 			method="POST" modelAttribute="osname">
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="osname"
+					style="color: red; text-align: left;"><form:errors
+						path="name" /></label>
+			</div>
+			<div class="form-group">
 				<label for="osname" class="col-sm-2 control-label">Operating
 					System Name</label>
 				<div class="col-sm-10">

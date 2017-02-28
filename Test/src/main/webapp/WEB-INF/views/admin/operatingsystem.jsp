@@ -15,6 +15,11 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="version"
+					style="color: red; text-align: left;"><form:errors
+						path="version" /></label>
+			</div>
+			<div class="form-group">
 				<label for="version" class="col-sm-2 control-label">Version</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="version" id="version" />

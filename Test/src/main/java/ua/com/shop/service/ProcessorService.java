@@ -21,7 +21,7 @@ public interface ProcessorService {
 
 	ProcessorForm findForm(int id);
 
-	Processor findUnique(ProcessorMaker makerId, String model, int frequency,
-			NumberOfCores numberOfCoresId);
+	Processor findUnique(ProcessorMaker makerId, String model,
+			String frequency, NumberOfCores numberOfCoresId);
 
 }

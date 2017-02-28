@@ -8,7 +8,7 @@ public class ProcessorForm {
 	private int id;
 	private ProcessorMaker maker;
 	private String model;
-	private int frequency;
+	private String frequency;
 	private NumberOfCores numberOfCores;
 
 	public int getId() {
@@ -35,11 +35,11 @@ public class ProcessorForm {
 		this.model = model;
 	}
 
-	public int getFrequency() {
+	public String getFrequency() {
 		return frequency;
 	}
 
-	public void setFrequency(int frequency) {
+	public void setFrequency(String frequency) {
 		this.frequency = frequency;
 	}
 

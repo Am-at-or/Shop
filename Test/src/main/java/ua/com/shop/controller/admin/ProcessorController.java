@@ -63,8 +63,11 @@ public class ProcessorController {
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("processor") @Valid ProcessorForm processorForm, BindingResult br, Model model, SessionStatus status){
-		if(br.hasErrors()) return show(model);
+	public String save(
+			@ModelAttribute("processor") @Valid ProcessorForm processorForm,
+			BindingResult br, Model model, SessionStatus status) {
+		if (br.hasErrors())
+			return show(model);
 		processorService.save(processorForm);
 		status.setComplete();
 		return "redirect:/admin/processor";

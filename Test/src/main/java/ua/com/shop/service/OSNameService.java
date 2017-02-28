@@ -15,5 +15,7 @@ public interface OSNameService {
 	void delete(int id);
 
 	void update(OSName osName);
-	
+
+	OSName findByName(String name);
+
 }

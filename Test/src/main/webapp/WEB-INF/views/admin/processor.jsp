@@ -66,7 +66,7 @@
 <c:forEach items="${processors}" var="processor">
 	<div class="row">
 		<div class="col-md-4 col-xs-4">${processor.maker.maker}
-			${processor.model} (${processor.frequency} Hz,
+			${processor.model} (${processor.frequency} GHz,
 			${processor.numberOfCores.cores} Cores)</div>
 		<div class="col-md-4 col-xs-4">
 			<a class="btn btn-warning"

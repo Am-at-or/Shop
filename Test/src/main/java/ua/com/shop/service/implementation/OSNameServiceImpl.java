@@ -41,4 +41,9 @@ public class OSNameServiceImpl implements OSNameService {
 		osNameDao.save(osName);
 	}
 
+	@Override
+	public OSName findByName(String name) {
+		return osNameDao.findByName(name);
+	}
+
 }
