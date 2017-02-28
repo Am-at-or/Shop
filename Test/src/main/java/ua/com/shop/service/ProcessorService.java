@@ -2,11 +2,14 @@ package ua.com.shop.service;
 
 import java.util.List;
 
+import ua.com.shop.dto.form.ProcessorForm;
+import ua.com.shop.entity.NumberOfCores;
 import ua.com.shop.entity.Processor;
+import ua.com.shop.entity.ProcessorMaker;
 
 public interface ProcessorService {
 
-	void save(Processor processor);
+	void save(ProcessorForm form);
 
 	Processor findOne(int id);
 
@@ -15,5 +18,10 @@ public interface ProcessorService {
 	void delete(int id);
 
 	void update(Processor processor);
+
+	ProcessorForm findForm(int id);
+
+	Processor findUnique(ProcessorMaker makerId, String model, int frequency,
+			NumberOfCores numberOfCoresId);
 
 }

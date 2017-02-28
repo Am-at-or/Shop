@@ -7,6 +7,11 @@
 		<form:form class="form-horizontal" action="/admin/displaytechnology"
 			method="POST" modelAttribute="displaytechnology">
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label"
+					for="technology" style="color: red; text-align: left;"><form:errors
+						path="technology" /></label>
+			</div>
+			<div class="form-group">
 				<label for="technology" class="col-sm-2 control-label">Technology</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="technology" id="technology" />

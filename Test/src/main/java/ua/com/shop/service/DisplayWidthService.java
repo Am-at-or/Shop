@@ -15,5 +15,7 @@ public interface DisplayWidthService {
 	void delete(int id);
 
 	void update(DisplayWidth displayWidth);
+	
+	DisplayWidth findByDisplayWidth(int width);
 
 }

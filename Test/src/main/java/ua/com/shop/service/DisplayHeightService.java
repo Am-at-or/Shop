@@ -16,4 +16,6 @@ public interface DisplayHeightService {
 
 	void update(DisplayHeight displayHeight);
 
+	DisplayHeight findByDisplayHeight(int height);
+
 }

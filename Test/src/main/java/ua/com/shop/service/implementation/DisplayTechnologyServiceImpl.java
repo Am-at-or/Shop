@@ -40,4 +40,9 @@ public class DisplayTechnologyServiceImpl implements DisplayTechnologyService {
 		displayTechnologyDao.save(displayTechnology);
 	}
 
+	@Override
+	public DisplayTechnology findByDisplayTechnology(String technology) {
+		return displayTechnologyDao.findByDisplayTechnology(technology);
+	}
+
 }

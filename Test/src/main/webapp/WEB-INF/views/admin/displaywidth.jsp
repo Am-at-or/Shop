@@ -7,6 +7,11 @@
 		<form:form class="form-horizontal" action="/admin/displaywidth"
 			method="POST" modelAttribute="displaywidth">
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="width"
+					style="color: red; text-align: left;"><form:errors
+						path="width" /></label>
+			</div>
+			<div class="form-group">
 				<label for="width" class="col-sm-2 control-label">Width</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="width" id="width" />

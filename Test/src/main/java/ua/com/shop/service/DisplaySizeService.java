@@ -15,5 +15,7 @@ public interface DisplaySizeService {
 	void delete(int id);
 
 	void update(DisplaySize displaySize);
+	
+	DisplaySize findByDisplaySize(int size);
 
 }

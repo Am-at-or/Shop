@@ -1,9 +1,14 @@
 package ua.com.shop.controller.admin;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.shop.entity.DisplaySize;
 import ua.com.shop.service.DisplaySizeService;
+import ua.com.shop.validator.DisplaySizeValidator;
 
 @Controller
 @RequestMapping("/admin/displaysize")
@@ -21,6 +27,11 @@ public class DisplaySizeController {
 
 	@Autowired
 	private DisplaySizeService displaySizeService;
+
+	@InitBinder("displaysize")
+	protected void bind(WebDataBinder binder) {
+		binder.setValidator(new DisplaySizeValidator(displaySizeService));
+	}
 
 	@ModelAttribute("displaysize")
 	public DisplaySize getForm() {
@@ -34,8 +45,12 @@ public class DisplaySizeController {
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("displaysize") DisplaySize displaySize,
-			SessionStatus status) {
+	public String save(
+			@ModelAttribute("displaysize") @Valid DisplaySize displaySize,
+			BindingResult br, Model model, SessionStatus status) {
+		if (br.hasErrors()) {
+			return show(model);
+		}
 		displaySizeService.save(displaySize);
 		status.setComplete();
 		return "redirect:/admin/displaysize";

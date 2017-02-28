@@ -40,4 +40,9 @@ public class DisplaySizeServiceImpl implements DisplaySizeService {
 		displaySizeDao.save(displaySize);
 	}
 
+	@Override
+	public DisplaySize findByDisplaySize(int size) {
+		return displaySizeDao.findByDisplaySize(size);
+	}
+
 }

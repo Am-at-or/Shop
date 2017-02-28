@@ -39,4 +39,10 @@ public class MakerServiceImpl implements MakerService {
 	public void update(Maker maker) {
 		makerDao.save(maker);
 	}
+
+	@Override
+	public Maker findByMaker(String name) {
+		return makerDao.findByMaker(name);
+	}
+
 }

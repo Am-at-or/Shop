@@ -40,4 +40,9 @@ public class DisplayWidthServiceImpl implements DisplayWidthService {
 		displayWidthDao.save(displayWidth);
 	}
 
+	@Override
+	public DisplayWidth findByDisplayWidth(int width) {
+		return displayWidthDao.findByDisplayWidth(width);
+	}
+
 }

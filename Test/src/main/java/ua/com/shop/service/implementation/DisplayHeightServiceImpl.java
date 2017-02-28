@@ -40,4 +40,9 @@ public class DisplayHeightServiceImpl implements DisplayHeightService {
 		displayHeightDao.save(displayHeight);
 	}
 
+	@Override
+	public DisplayHeight findByDisplayHeight(int height) {
+		return displayHeightDao.findByDisplayHeight(height);
+	}
+
 }

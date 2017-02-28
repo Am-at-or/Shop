@@ -14,10 +14,20 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="model"
+					style="color: red; text-align: left;"><form:errors
+						path="model" /></label>
+			</div>
+			<div class="form-group">
 				<label for="model" class="col-sm-2 control-label">Model</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="model" id="model" />
 				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label"
+					for="frequency" style="color: red; text-align: left;"><form:errors
+						path="frequency" /></label>
 			</div>
 			<div class="form-group">
 				<label for="frequency" class="col-sm-2 control-label">Frequency</label>
@@ -26,10 +36,12 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="numberOfCores" class="col-sm-2 control-label">Number Of Cores</label>
+				<label for="numberOfCores" class="col-sm-2 control-label">Number
+					Of Cores</label>
 				<div class="col-sm-10">
-					<form:select class="form-control" path="numberOfCores" id="numberOfCores"
-						items="${numberofcoress}" itemValue="id" itemLabel="cores" />
+					<form:select class="form-control" path="numberOfCores"
+						id="numberOfCores" items="${numberofcoress}" itemValue="id"
+						itemLabel="cores" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -53,12 +65,16 @@
 </div>
 <c:forEach items="${processors}" var="processor">
 	<div class="row">
-		<div class="col-md-4 col-xs-4">${processor.maker.maker} ${processor.model} (${processor.frequency} Hz, ${processor.numberOfCores.cores} Cores)</div>
+		<div class="col-md-4 col-xs-4">${processor.maker.maker}
+			${processor.model} (${processor.frequency} Hz,
+			${processor.numberOfCores.cores} Cores)</div>
 		<div class="col-md-4 col-xs-4">
-			<a class="btn btn-warning" href="/admin/processor/update/${processor.id}">update</a>
+			<a class="btn btn-warning"
+				href="/admin/processor/update/${processor.id}">update</a>
 		</div>
 		<div class="col-md-4 col-xs-4">
-			<a class="btn btn-danger" href="/admin/processor/delete/${processor.id}">delete</a>
+			<a class="btn btn-danger"
+				href="/admin/processor/delete/${processor.id}">delete</a>
 		</div>
 	</div>
 </c:forEach>

@@ -40,4 +40,9 @@ public class ProcessorMakerServiceImpl implements ProcessorMakerService {
 		processorMakerDao.save(processorMaker);
 	}
 
+	@Override
+	public ProcessorMaker findByProcessorMaker(String maker) {
+		return processorMakerDao.findByProcessorMaker(maker);
+	}
+
 }

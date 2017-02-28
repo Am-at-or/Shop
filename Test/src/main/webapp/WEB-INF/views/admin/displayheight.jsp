@@ -7,6 +7,11 @@
 		<form:form class="form-horizontal" action="/admin/displayheight"
 			method="POST" modelAttribute="displayheight">
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="height"
+					style="color: red; text-align: left;"><form:errors
+						path="height" /></label>
+			</div>
+			<div class="form-group">
 				<label for="height" class="col-sm-2 control-label">Height</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="height" id="height" />

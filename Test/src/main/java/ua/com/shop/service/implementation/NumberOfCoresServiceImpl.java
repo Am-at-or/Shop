@@ -40,4 +40,9 @@ public class NumberOfCoresServiceImpl implements NumberOfCoresService {
 		numberOfCoresDao.save(numberOfCores);
 	}
 
+	@Override
+	public NumberOfCores findByNumberOfCores(int cores) {
+		return numberOfCoresDao.findByNumberOfCores(cores);
+	}
+
 }

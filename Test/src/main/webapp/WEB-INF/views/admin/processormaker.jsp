@@ -7,6 +7,11 @@
 		<form:form class="form-horizontal" action="/admin/processormaker"
 			method="POST" modelAttribute="processormaker">
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="maker"
+					style="color: red; text-align: left;"><form:errors
+						path="maker" /></label>
+			</div>
+			<div class="form-group">
 				<label for="maker" class="col-sm-2 control-label">Maker</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="maker" id="maker" />

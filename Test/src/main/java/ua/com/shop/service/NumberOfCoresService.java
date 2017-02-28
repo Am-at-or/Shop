@@ -16,4 +16,6 @@ public interface NumberOfCoresService {
 
 	void update(NumberOfCores numberOfCores);
 
+	NumberOfCores findByNumberOfCores(int cores);
+
 }

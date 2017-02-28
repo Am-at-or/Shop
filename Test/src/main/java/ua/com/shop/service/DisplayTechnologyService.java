@@ -16,4 +16,6 @@ public interface DisplayTechnologyService {
 
 	void update(DisplayTechnology displayTechnology);
 
+	DisplayTechnology findByDisplayTechnology(String technology);
+
 }

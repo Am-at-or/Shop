@@ -15,5 +15,7 @@ public interface MakerService {
 	void delete(int id);
 
 	void update(Maker maker);
+	
+	Maker findByMaker(String name);
 
 }

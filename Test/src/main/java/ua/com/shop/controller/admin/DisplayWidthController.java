@@ -1,9 +1,14 @@
 package ua.com.shop.controller.admin;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.shop.entity.DisplayWidth;
 import ua.com.shop.service.DisplayWidthService;
+import ua.com.shop.validator.DisplayWidthValidator;
 
 @Controller
 @RequestMapping("/admin/displaywidth")
@@ -21,6 +27,11 @@ public class DisplayWidthController {
 
 	@Autowired
 	private DisplayWidthService displayWidthService;
+
+	@InitBinder("displaywidth")
+	protected void bind(WebDataBinder binder) {
+		binder.setValidator(new DisplayWidthValidator(displayWidthService));
+	}
 
 	@ModelAttribute("displaywidth")
 	public DisplayWidth getForm() {
@@ -35,8 +46,11 @@ public class DisplayWidthController {
 
 	@PostMapping
 	public String save(
-			@ModelAttribute("displaywidth") DisplayWidth displayWidth,
-			SessionStatus status) {
+			@ModelAttribute("displaywidth") @Valid DisplayWidth displayWidth,
+			BindingResult br, Model model, SessionStatus status) {
+		if (br.hasErrors()) {
+			return show(model);
+		}
 		displayWidthService.save(displayWidth);
 		status.setComplete();
 		return "redirect:/admin/displaywidth";

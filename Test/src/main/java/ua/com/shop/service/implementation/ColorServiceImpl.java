@@ -40,4 +40,9 @@ public class ColorServiceImpl implements ColorService {
 		colorDao.save(color);
 	}
 
+	@Override
+	public Color findByColor(String color) {
+		return colorDao.findByColor(color);
+	}
+
 }

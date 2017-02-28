@@ -7,6 +7,11 @@
 		<form:form class="form-horizontal" action="/admin/numberofcores"
 			method="POST" modelAttribute="numberofcores">
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="cores"
+					style="color: red; text-align: left;"><form:errors
+						path="cores" /></label>
+			</div>
+			<div class="form-group">
 				<label for="cores" class="col-sm-2 control-label">Height</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="cores" id="cores" />

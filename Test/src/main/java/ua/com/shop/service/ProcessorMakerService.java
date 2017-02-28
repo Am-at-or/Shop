@@ -16,4 +16,6 @@ public interface ProcessorMakerService {
 
 	void update(ProcessorMaker processorMaker);
 
+	ProcessorMaker findByProcessorMaker(String maker);
+
 }
