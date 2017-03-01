@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.shop.entity.DisplaySize;
+import ua.com.shop.dto.form.DisplaySizeForm;
 import ua.com.shop.service.DisplaySizeService;
 import ua.com.shop.validator.DisplaySizeValidator;
 
@@ -34,8 +34,8 @@ public class DisplaySizeController {
 	}
 
 	@ModelAttribute("displaysize")
-	public DisplaySize getForm() {
-		return new DisplaySize();
+	public DisplaySizeForm getForm() {
+		return new DisplaySizeForm();
 	}
 
 	@GetMapping
@@ -46,19 +46,18 @@ public class DisplaySizeController {
 
 	@PostMapping
 	public String save(
-			@ModelAttribute("displaysize") @Valid DisplaySize displaySize,
+			@ModelAttribute("displaysize") @Valid DisplaySizeForm displaySizeForm,
 			BindingResult br, Model model, SessionStatus status) {
-		if (br.hasErrors()) {
+		if (br.hasErrors())
 			return show(model);
-		}
-		displaySizeService.save(displaySize);
+		displaySizeService.save(displaySizeForm);
 		status.setComplete();
 		return "redirect:/admin/displaysize";
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model) {
-		model.addAttribute("displaysize", displaySizeService.findOne(id));
+		model.addAttribute("displaysize", displaySizeService.findForm(id));
 		show(model);
 		return "admin-displaysize";
 	}

@@ -2,11 +2,12 @@ package ua.com.shop.service;
 
 import java.util.List;
 
+import ua.com.shop.dto.form.DisplaySizeForm;
 import ua.com.shop.entity.DisplaySize;
 
 public interface DisplaySizeService {
 
-	void save(DisplaySize displaySize);
+	void save(DisplaySizeForm displaySizeForm);
 
 	DisplaySize findOne(int id);
 
@@ -15,7 +16,9 @@ public interface DisplaySizeService {
 	void delete(int id);
 
 	void update(DisplaySize displaySize);
-	
-	DisplaySize findByDisplaySize(int size);
+
+	DisplaySizeForm findForm(int id);
+
+	DisplaySize findUnique(String size);
 
 }

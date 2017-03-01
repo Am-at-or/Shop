@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.com.shop.dao.DisplaySizeDao;
+import ua.com.shop.dto.form.DisplaySizeForm;
 import ua.com.shop.entity.DisplaySize;
 import ua.com.shop.service.DisplaySizeService;
 
@@ -16,8 +17,11 @@ public class DisplaySizeServiceImpl implements DisplaySizeService {
 	private DisplaySizeDao displaySizeDao;
 
 	@Override
-	public void save(DisplaySize displaySize) {
-		displaySizeDao.save(displaySize);
+	public void save(DisplaySizeForm form) {
+		DisplaySize entity = new DisplaySize();
+		entity.setId(form.getId());
+		entity.setSize(Integer.valueOf(form.getSize()));
+		displaySizeDao.save(entity);
 	}
 
 	@Override
@@ -41,8 +45,17 @@ public class DisplaySizeServiceImpl implements DisplaySizeService {
 	}
 
 	@Override
-	public DisplaySize findByDisplaySize(int size) {
-		return displaySizeDao.findByDisplaySize(size);
+	public DisplaySizeForm findForm(int id) {
+		DisplaySizeForm form = new DisplaySizeForm();
+		DisplaySize entity = displaySizeDao.findOne(id);
+		form.setId(entity.getId());
+		form.setSize(String.valueOf(entity.getSize()));
+		return form;
+	}
+
+	@Override
+	public DisplaySize findUnique(String size) {
+		return displaySizeDao.findUnique(Integer.valueOf(size));
 	}
 
 }

@@ -1,13 +1,17 @@
 package ua.com.shop.validator;
 
+import java.util.regex.Pattern;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import ua.com.shop.entity.DisplaySize;
+import ua.com.shop.dto.form.DisplaySizeForm;
 import ua.com.shop.service.DisplaySizeService;
 
 public class DisplaySizeValidator implements Validator {
+
+	private final static Pattern REG1 = Pattern.compile("([0-9]{1})");
 
 	private final DisplaySizeService displaySizeService;
 
@@ -17,16 +21,22 @@ public class DisplaySizeValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return DisplaySize.class.equals(clazz);
+		return DisplaySizeForm.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		DisplaySize displaySize = (DisplaySize) target;
+		DisplaySizeForm form = (DisplaySizeForm) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "size", "",
 				"Can't be empty");
-		if (displaySizeService.findByDisplaySize(displaySize.getSize()) != null) {
-			errors.rejectValue("size", "", "Already exist!");
+		if (!REG1.matcher(String.valueOf(form.getSize())).matches()) {
+			errors.rejectValue("size", "", "Enter text [0-9]{1}!");
+		}
+
+		if (errors.getFieldError("size") == null) {
+			if (displaySizeService.findUnique(form.getSize()) != null) {
+				errors.rejectValue("size", "", "Already exist!");
+			}
 		}
 	}
 
