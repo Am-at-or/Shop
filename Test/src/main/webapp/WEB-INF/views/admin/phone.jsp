@@ -14,10 +14,20 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="model"
+					style="color: red; text-align: left;"><form:errors
+						path="model" /></label>
+			</div>
+			<div class="form-group">
 				<label for="model" class="col-sm-2 control-label">Model</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="model" id="model" />
 				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="price"
+					style="color: red; text-align: left;"><form:errors
+						path="price" /></label>
 			</div>
 			<div class="form-group">
 				<label for="price" class="col-sm-2 control-label">Price</label>
@@ -36,6 +46,11 @@
 						</c:forEach>
 					</form:select>
 				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label"
+					for="primaryCamera" style="color: red; text-align: left;"><form:errors
+						path="primaryCamera" /></label>
 			</div>
 			<div class="form-group">
 				<label for="primaryCamera" class="col-sm-2 control-label">Primary
@@ -64,10 +79,20 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="ram"
+					style="color: red; text-align: left;"><form:errors
+						path="ram" /></label>
+			</div>
+			<div class="form-group">
 				<label for="ram" class="col-sm-2 control-label">RAM</label>
 				<div class="col-sm-10">
 					<form:input class="form-control" path="ram" id="ram" />
 				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label"
+					for="internal" style="color: red; text-align: left;"><form:errors
+						path="internal" /></label>
 			</div>
 			<div class="form-group">
 				<label for="internal" class="col-sm-2 control-label">Internal</label>
@@ -80,6 +105,11 @@
 				<div class="col-sm-10">
 					<form:input class="form-control" path="card" id="card" />
 				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label"
+					for="numberOfSimCards" style="color: red; text-align: left;"><form:errors
+						path="numberOfSimCards" /></label>
 			</div>
 			<div class="form-group">
 				<label for="numberOfSimCards" class="col-sm-2 control-label">Number
@@ -99,6 +129,11 @@
 						</c:forEach>
 					</form:select>
 				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="battery"
+					style="color: red; text-align: left;"><form:errors
+						path="battery" /></label>
 			</div>
 			<div class="form-group">
 				<label for="battery" class="col-sm-2 control-label">Battery</label>

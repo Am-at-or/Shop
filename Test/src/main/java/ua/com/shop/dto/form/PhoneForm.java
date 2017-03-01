@@ -1,46 +1,35 @@
-package ua.com.shop.entity;
+package ua.com.shop.dto.form;
 
-import java.util.List;
+import ua.com.shop.entity.Color;
+import ua.com.shop.entity.Display;
+import ua.com.shop.entity.Maker;
+import ua.com.shop.entity.OperatingSystem;
+import ua.com.shop.entity.Processor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+public class PhoneForm {
 
-@Entity
-public class Phone extends AbstractEntity {
-
-	@ManyToOne
+	private int id;
 	private Maker maker;
 	private String model;
 	private int price;
-	@ManyToOne
 	private Display display;
 	private int primaryCamera;
 	private int secondaryCamera;
-	@ManyToOne
 	private Processor processor;
 	private int ram;
 	private int internal;
 	private int card;
 	private int numberOfSimCards;
-	@ManyToOne
 	private OperatingSystem operatingSystem;
 	private int battery;
-	@ManyToOne
 	private Color color;
-	@OneToMany(mappedBy = "phone", fetch = FetchType.LAZY)
-	private List<Rating> ratings;
-	@OneToMany(mappedBy = "phone", fetch = FetchType.LAZY)
-	private List<Comment> comments;
-	@ManyToMany
-	@JoinTable(name = "phone_orders", joinColumns = @JoinColumn(name = "id_phone"), inverseJoinColumns = @JoinColumn(name = "id_orders"))
-	private List<Orders> orders;
 
-	public Phone() {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Maker getMaker() {
@@ -153,30 +142,6 @@ public class Phone extends AbstractEntity {
 
 	public void setColor(Color color) {
 		this.color = color;
-	}
-
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
-
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public List<Orders> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Orders> orders) {
-		this.orders = orders;
 	}
 
 }

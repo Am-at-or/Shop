@@ -41,7 +41,7 @@ public class NumberOfCoresServiceImpl implements NumberOfCoresService {
 	}
 
 	@Override
-	public NumberOfCores findByNumberOfCores(int cores) {
+	public NumberOfCores findByNumberOfCores(String cores) {
 		return numberOfCoresDao.findByNumberOfCores(cores);
 	}
 
