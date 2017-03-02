@@ -10,6 +10,7 @@ public class ProcessorForm {
 	private String model;
 	private String frequency;
 	private NumberOfCores numberOfCores;
+	private String ifExist;
 
 	public int getId() {
 		return id;
@@ -49,6 +50,14 @@ public class ProcessorForm {
 
 	public void setNumberOfCores(NumberOfCores numberOfCores) {
 		this.numberOfCores = numberOfCores;
+	}
+
+	public String getIfExist() {
+		return ifExist;
+	}
+
+	public void setIfExist(String ifExist) {
+		this.ifExist = ifExist;
 	}
 
 }

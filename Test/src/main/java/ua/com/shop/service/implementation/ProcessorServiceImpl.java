@@ -42,7 +42,8 @@ public class ProcessorServiceImpl implements ProcessorService {
 	public Processor findUnique(ProcessorMaker processorMakerId, String model,
 			String frequency, NumberOfCores numberOfCoresId) {
 		return processorDao.findUnique(processorMakerId.getId(), model,
-				frequency, numberOfCoresId.getId());
+				Double.valueOf(frequency.replace(",", ".")),
+				numberOfCoresId.getId());
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		form.setId(entity.getId());
 		form.setMaker(entity.getMaker());
 		form.setModel(entity.getModel());
-		form.setFrequency(entity.getFrequency());
+		form.setFrequency(String.valueOf(entity.getFrequency()));
 		form.setNumberOfCores(entity.getNumberOfCores());
 		return form;
 	}
@@ -63,7 +64,8 @@ public class ProcessorServiceImpl implements ProcessorService {
 		entity.setId(form.getId());
 		entity.setMaker(form.getMaker());
 		entity.setModel(form.getModel());
-		entity.setFrequency(form.getFrequency());
+		entity.setFrequency(Double.valueOf(form.getFrequency()
+				.replace(",", ".")));
 		entity.setNumberOfCores(form.getNumberOfCores());
 		processorDao.save(entity);
 	}

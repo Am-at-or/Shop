@@ -13,7 +13,7 @@ public class Processor extends AbstractEntity {
 	@ManyToOne
 	private ProcessorMaker maker;
 	private String model;
-	private String frequency;
+	private double frequency;
 	@ManyToOne
 	private NumberOfCores numberOfCores;
 	@OneToMany(mappedBy = "processor", fetch = FetchType.LAZY)
@@ -38,11 +38,11 @@ public class Processor extends AbstractEntity {
 		this.model = model;
 	}
 
-	public String getFrequency() {
+	public double getFrequency() {
 		return frequency;
 	}
 
-	public void setFrequency(String frequency) {
+	public void setFrequency(double frequency) {
 		this.frequency = frequency;
 	}
 

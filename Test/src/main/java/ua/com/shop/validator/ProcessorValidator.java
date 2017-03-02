@@ -11,9 +11,8 @@ import ua.com.shop.service.ProcessorService;
 
 public class ProcessorValidator implements Validator {
 
-	private final static Pattern REG1 = Pattern.compile("([a-zA-Z0-9]{1,20})");
-	private final static Pattern REG2 = Pattern
-			.compile("([0-9]{1}\\.[0-9]{1})");
+	private final static Pattern REG = Pattern
+			.compile("([0-9]{1}\\.[0-9]{1,2})|([0-9]{1}\\,[0-9]{1,2})|([0-9]{1})");
 
 	private ProcessorService processorService;
 
@@ -33,18 +32,15 @@ public class ProcessorValidator implements Validator {
 				"Can't be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "frequency", "",
 				"Can't be empty");
-		if (!REG1.matcher(form.getModel()).matches()) {
-			errors.rejectValue("model", "", "Enter text [a-zA-Z0-9]{1,20}!");
-		}
-		if (!REG2.matcher(form.getFrequency()).matches()) {
+		if (!REG.matcher(form.getFrequency()).matches()) {
 			errors.rejectValue("frequency", "",
-					"Enter numbers [0-9]{1}\\.[0-9]{1}!");
+					"Enter numbers [0-9]{1}\\.[0-9]{1,2})!");
 		}
 		if (errors.getFieldError("model") == null
 				&& errors.getFieldError("frequency") == null) {
 			if (processorService.findUnique(form.getMaker(), form.getModel(),
 					form.getFrequency(), form.getNumberOfCores()) != null) {
-				errors.rejectValue("model", "", "Already exist!");
+				errors.rejectValue("ifExist", "", "Already exist!");
 			}
 		}
 	}
