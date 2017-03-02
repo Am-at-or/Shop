@@ -8,6 +8,6 @@ import ua.com.shop.entity.DisplayWidth;
 public interface DisplayWidthDao extends JpaRepository<DisplayWidth, Integer> {
 
 	@Query("SELECT d FROM DisplayWidth d WHERE d.width = ?1")
-	DisplayWidth findByDisplayWidth(int width);
+	DisplayWidth findUnique(int width);
 
 }

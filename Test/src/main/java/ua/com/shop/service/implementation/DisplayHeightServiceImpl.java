@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.com.shop.dao.DisplayHeightDao;
+import ua.com.shop.dto.form.DisplayHeightForm;
 import ua.com.shop.entity.DisplayHeight;
 import ua.com.shop.service.DisplayHeightService;
 
@@ -16,8 +17,11 @@ public class DisplayHeightServiceImpl implements DisplayHeightService {
 	private DisplayHeightDao displayHeightDao;
 
 	@Override
-	public void save(DisplayHeight displayHeight) {
-		displayHeightDao.save(displayHeight);
+	public void save(DisplayHeightForm form) {
+		DisplayHeight entity = new DisplayHeight();
+		entity.setId(form.getId());
+		entity.setHeight(Integer.valueOf(form.getHeight()));
+		displayHeightDao.save(entity);
 	}
 
 	@Override
@@ -41,8 +45,17 @@ public class DisplayHeightServiceImpl implements DisplayHeightService {
 	}
 
 	@Override
-	public DisplayHeight findByDisplayHeight(int height) {
-		return displayHeightDao.findByDisplayHeight(height);
+	public DisplayHeightForm findForm(int id) {
+		DisplayHeightForm form = new DisplayHeightForm();
+		DisplayHeight entity = displayHeightDao.findOne(id);
+		form.setId(entity.getId());
+		form.setHeight(String.valueOf(entity.getHeight()));
+		return form;
+	}
+
+	@Override
+	public DisplayHeight findUnique(String height) {
+		return displayHeightDao.findUnique(Integer.valueOf(height));
 	}
 
 }

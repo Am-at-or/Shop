@@ -18,6 +18,11 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-10 col-sm-offset-2 control-label" for="ifExist"
+					style="color: red; text-align: left;"><form:errors
+						path="ifExist" /></label>
+			</div>
+			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">Create</button>
 				</div>

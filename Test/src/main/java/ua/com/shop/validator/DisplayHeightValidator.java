@@ -1,13 +1,17 @@
 package ua.com.shop.validator;
 
+import java.util.regex.Pattern;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import ua.com.shop.entity.DisplayHeight;
+import ua.com.shop.dto.form.DisplayHeightForm;
 import ua.com.shop.service.DisplayHeightService;
 
 public class DisplayHeightValidator implements Validator {
+
+	private final static Pattern REG1 = Pattern.compile("([0-9]{3,4})");
 
 	private DisplayHeightService displayHeightService;
 
@@ -17,16 +21,22 @@ public class DisplayHeightValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return DisplayHeight.class.equals(clazz);
+		return DisplayHeightForm.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		DisplayHeight displayHeight = (DisplayHeight) target;
+		DisplayHeightForm form = (DisplayHeightForm) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "height", "",
 				"Can't be empty");
-		if (displayHeightService.findByDisplayHeight(displayHeight.getHeight()) != null) {
-			errors.rejectValue("height", "", "Already exist!");
+		if (!REG1.matcher(String.valueOf(form.getHeight())).matches()) {
+			errors.rejectValue("height", "", "Enter numbers [0-9]{3,4}!");
+		}
+
+		if (errors.getFieldError("height") == null) {
+			if (displayHeightService.findUnique(form.getHeight()) != null) {
+				errors.rejectValue("ifExist", "", "Already exist!");
+			}
 		}
 	}
 

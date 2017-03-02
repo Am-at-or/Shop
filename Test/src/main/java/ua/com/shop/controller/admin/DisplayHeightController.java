@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.shop.entity.DisplayHeight;
+import ua.com.shop.dto.form.DisplayHeightForm;
 import ua.com.shop.service.DisplayHeightService;
 import ua.com.shop.validator.DisplayHeightValidator;
 
@@ -34,8 +34,8 @@ public class DisplayHeightController {
 	}
 
 	@ModelAttribute("displayheight")
-	public DisplayHeight getForm() {
-		return new DisplayHeight();
+	public DisplayHeightForm getForm() {
+		return new DisplayHeightForm();
 	}
 
 	@GetMapping
@@ -46,19 +46,19 @@ public class DisplayHeightController {
 
 	@PostMapping
 	public String save(
-			@ModelAttribute("displayheight") @Valid DisplayHeight displayHeight,
+			@ModelAttribute("displayheight") @Valid DisplayHeightForm displayHeightForm,
 			BindingResult br, Model model, SessionStatus status) {
 		if (br.hasErrors()) {
 			return show(model);
 		}
-		displayHeightService.save(displayHeight);
+		displayHeightService.save(displayHeightForm);
 		status.setComplete();
 		return "redirect:/admin/displayheight";
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model) {
-		model.addAttribute("displayheight", displayHeightService.findOne(id));
+		model.addAttribute("displayheight", displayHeightService.findForm(id));
 		show(model);
 		return "admin-displayheight";
 	}

@@ -20,7 +20,7 @@ public class DisplaySizeServiceImpl implements DisplaySizeService {
 	public void save(DisplaySizeForm form) {
 		DisplaySize entity = new DisplaySize();
 		entity.setId(form.getId());
-		entity.setSize(Integer.valueOf(form.getSize()));
+		entity.setSize(Double.valueOf(form.getSize()));
 		displaySizeDao.save(entity);
 	}
 
@@ -55,7 +55,7 @@ public class DisplaySizeServiceImpl implements DisplaySizeService {
 
 	@Override
 	public DisplaySize findUnique(String size) {
-		return displaySizeDao.findUnique(Integer.valueOf(size));
+		return displaySizeDao.findUnique(Double.valueOf(size));
 	}
 
 }

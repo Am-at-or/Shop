@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.shop.entity.DisplayWidth;
+import ua.com.shop.dto.form.DisplayWidthForm;
 import ua.com.shop.service.DisplayWidthService;
 import ua.com.shop.validator.DisplayWidthValidator;
 
@@ -34,8 +34,8 @@ public class DisplayWidthController {
 	}
 
 	@ModelAttribute("displaywidth")
-	public DisplayWidth getForm() {
-		return new DisplayWidth();
+	public DisplayWidthForm getForm() {
+		return new DisplayWidthForm();
 	}
 
 	@GetMapping
@@ -46,19 +46,19 @@ public class DisplayWidthController {
 
 	@PostMapping
 	public String save(
-			@ModelAttribute("displaywidth") @Valid DisplayWidth displayWidth,
+			@ModelAttribute("displaywidth") @Valid DisplayWidthForm displayWidthForm,
 			BindingResult br, Model model, SessionStatus status) {
 		if (br.hasErrors()) {
 			return show(model);
 		}
-		displayWidthService.save(displayWidth);
+		displayWidthService.save(displayWidthForm);
 		status.setComplete();
 		return "redirect:/admin/displaywidth";
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model) {
-		model.addAttribute("displaywidth", displayWidthService.findOne(id));
+		model.addAttribute("displaywidth", displayWidthService.findForm(id));
 		show(model);
 		return "admin-displaywidth";
 	}

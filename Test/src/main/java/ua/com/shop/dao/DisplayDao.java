@@ -15,4 +15,7 @@ public interface DisplayDao extends JpaRepository<Display, Integer> {
 	@Query("SELECT d FROM Display d LEFT JOIN FETCH d.size LEFT JOIN FETCH d.width LEFT JOIN FETCH d.height LEFT JOIN FETCH d.technology WHERE d.id = ?1")
 	Display findOne(int id);
 
+	@Query("SELECT d FROM Display d WHERE d.size.id = ?1 and d.width.id = ?2 and d.height.id = ?3 and d.technology.id = ?4")
+	Display findUnique(int sizeId, int widthId, int heightId, int technologyId);
+
 }

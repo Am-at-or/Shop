@@ -8,6 +8,6 @@ import ua.com.shop.entity.DisplayHeight;
 public interface DisplayHeightDao extends JpaRepository<DisplayHeight, Integer> {
 
 	@Query("SELECT d FROM DisplayHeight d WHERE d.height = ?1")
-	DisplayHeight findByDisplayHeight(int height);
+	DisplayHeight findUnique(int height);
 
 }

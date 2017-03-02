@@ -11,7 +11,8 @@ import ua.com.shop.service.DisplaySizeService;
 
 public class DisplaySizeValidator implements Validator {
 
-	private final static Pattern REG1 = Pattern.compile("([0-9]{1})");
+	private final static Pattern REG1 = Pattern
+			.compile("([0-9]{1,2}\\.[0-9]{1,2})|([0-9]{1,2})");
 
 	private final DisplaySizeService displaySizeService;
 
@@ -30,12 +31,13 @@ public class DisplaySizeValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "size", "",
 				"Can't be empty");
 		if (!REG1.matcher(String.valueOf(form.getSize())).matches()) {
-			errors.rejectValue("size", "", "Enter text [0-9]{1}!");
+			errors.rejectValue("size", "",
+					"Enter numbers [0-9]{1,2}\\.[0-9]{1,2}!");
 		}
 
 		if (errors.getFieldError("size") == null) {
 			if (displaySizeService.findUnique(form.getSize()) != null) {
-				errors.rejectValue("size", "", "Already exist!");
+				errors.rejectValue("ifExist", "", "Already exist!");
 			}
 		}
 	}

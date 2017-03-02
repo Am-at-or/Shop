@@ -9,22 +9,18 @@ import javax.persistence.OneToMany;
 @Entity
 public class DisplaySize extends AbstractEntity {
 
-	private int size;
+	private double size;
 	@OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
 	private List<Display> displays;
 
 	public DisplaySize() {
 	}
 
-	public DisplaySize(int size) {
-		this.size = size;
-	}
-
-	public int getSize() {
+	public double getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(double size) {
 		this.size = size;
 	}
 

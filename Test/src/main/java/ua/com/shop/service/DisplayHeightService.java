@@ -2,11 +2,12 @@ package ua.com.shop.service;
 
 import java.util.List;
 
+import ua.com.shop.dto.form.DisplayHeightForm;
 import ua.com.shop.entity.DisplayHeight;
 
 public interface DisplayHeightService {
 
-	void save(DisplayHeight displayHeight);
+	void save(DisplayHeightForm displayHeightForm);
 
 	DisplayHeight findOne(int id);
 
@@ -16,6 +17,8 @@ public interface DisplayHeightService {
 
 	void update(DisplayHeight displayHeight);
 
-	DisplayHeight findByDisplayHeight(int height);
+	DisplayHeightForm findForm(int id);
+
+	DisplayHeight findUnique(String height);
 
 }
