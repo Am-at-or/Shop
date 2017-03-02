@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.shop.entity.NumberOfCores;
+import ua.com.shop.dto.form.NumberOfCoresForm;
 import ua.com.shop.service.NumberOfCoresService;
 import ua.com.shop.validator.NumberOfCoresValidator;
 
@@ -34,8 +34,8 @@ public class NumberOfCoresController {
 	}
 
 	@ModelAttribute("numberofcores")
-	public NumberOfCores getForm() {
-		return new NumberOfCores();
+	public NumberOfCoresForm getForm() {
+		return new NumberOfCoresForm();
 	}
 
 	@GetMapping
@@ -46,19 +46,19 @@ public class NumberOfCoresController {
 
 	@PostMapping
 	public String save(
-			@ModelAttribute("numberofcores") @Valid NumberOfCores numberOfCores,
+			@ModelAttribute("numberofcores") @Valid NumberOfCoresForm numberOfCoresForm,
 			BindingResult br, Model model, SessionStatus status) {
 		if (br.hasErrors()) {
 			return show(model);
 		}
-		numberOfCoresService.save(numberOfCores);
+		numberOfCoresService.save(numberOfCoresForm);
 		status.setComplete();
 		return "redirect:/admin/numberofcores";
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model) {
-		model.addAttribute("numberofcores", numberOfCoresService.findOne(id));
+		model.addAttribute("numberofcores", numberOfCoresService.findForm(id));
 		show(model);
 		return "admin-numberofcores";
 	}

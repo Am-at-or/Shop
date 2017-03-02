@@ -11,7 +11,7 @@ import ua.com.shop.service.DisplayHeightService;
 
 public class DisplayHeightValidator implements Validator {
 
-	private final static Pattern REG1 = Pattern.compile("([0-9]{3,4})");
+	private final static Pattern REG = Pattern.compile("([0-9]{3,4})");
 
 	private DisplayHeightService displayHeightService;
 
@@ -29,7 +29,7 @@ public class DisplayHeightValidator implements Validator {
 		DisplayHeightForm form = (DisplayHeightForm) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "height", "",
 				"Can't be empty");
-		if (!REG1.matcher(String.valueOf(form.getHeight())).matches()) {
+		if (!REG.matcher(String.valueOf(form.getHeight())).matches()) {
 			errors.rejectValue("height", "", "Enter numbers [0-9]{3,4}!");
 		}
 
