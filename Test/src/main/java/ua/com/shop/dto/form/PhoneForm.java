@@ -1,7 +1,9 @@
 package ua.com.shop.dto.form;
 
+import ua.com.shop.entity.CardMemory;
 import ua.com.shop.entity.Color;
 import ua.com.shop.entity.Display;
+import ua.com.shop.entity.InternalMemory;
 import ua.com.shop.entity.Maker;
 import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
@@ -19,8 +21,8 @@ public class PhoneForm {
 	private int secondaryCamera;
 	private Processor processor;
 	private Ram ram;
-	private int internal;
-	private int card;
+	private InternalMemory internal;
+	private CardMemory card;
 	private NumberOfSimCards numberOfSimCards;
 	private OperatingSystem operatingSystem;
 	private int battery;
@@ -98,19 +100,19 @@ public class PhoneForm {
 		this.ram = ram;
 	}
 
-	public int getInternal() {
+	public InternalMemory getInternal() {
 		return internal;
 	}
 
-	public void setInternal(int internal) {
+	public void setInternal(InternalMemory internal) {
 		this.internal = internal;
 	}
 
-	public int getCard() {
+	public CardMemory getCard() {
 		return card;
 	}
 
-	public void setCard(int card) {
+	public void setCard(CardMemory card) {
 		this.card = card;
 	}
 

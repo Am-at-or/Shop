@@ -79,11 +79,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-10 col-sm-offset-2 control-label" for="ram"
-					style="color: red; text-align: left;"><form:errors
-						path="ram" /></label>
-			</div>
-			<div class="form-group">
 				<label for="ram" class="col-sm-2 control-label">RAM</label>
 				<div class="col-sm-10">
 					<form:select class="form-control" path="ram" id="ram"
@@ -91,20 +86,18 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-10 col-sm-offset-2 control-label"
-					for="internal" style="color: red; text-align: left;"><form:errors
-						path="internal" /></label>
-			</div>
-			<div class="form-group">
-				<label for="internal" class="col-sm-2 control-label">Internal</label>
+				<label for="internal" class="col-sm-2 control-label">Internal
+					Memory</label>
 				<div class="col-sm-10">
-					<form:input class="form-control" path="internal" id="internal" />
+					<form:select class="form-control" path="internal" id="internal"
+						items="${internalmemories}" itemValue="id" itemLabel="internal" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="card" class="col-sm-2 control-label">Card</label>
+				<label for="card" class="col-sm-2 control-label">Card Memory</label>
 				<div class="col-sm-10">
-					<form:input class="form-control" path="card" id="card" />
+					<form:select class="form-control" path="card" id="card"
+						items="${cardmemories}" itemValue="id" itemLabel="card" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -113,10 +106,12 @@
 						path="numberOfSimCards" /></label>
 			</div>
 			<div class="form-group">
-				<label for="numberOfSimCards" class="col-sm-2 control-label">Number Of Sim Cards</label>
+				<label for="numberOfSimCards" class="col-sm-2 control-label">Number
+					Of Sim Cards</label>
 				<div class="col-sm-10">
-					<form:select class="form-control" path="numberOfSimCards" id="numberOfSimCards"
-						items="${numberofsimcardss}" itemValue="id" itemLabel="simCards" />
+					<form:select class="form-control" path="numberOfSimCards"
+						id="numberOfSimCards" items="${numberofsimcardss}" itemValue="id"
+						itemLabel="simCards" />
 				</div>
 			</div>
 			<div class="form-group">

@@ -15,6 +15,8 @@
 			<li><a href="/admin/operatingsystem">Add Operating System</a></li>
 			<li><a href="/admin/osname">Add Operating System Name</a></li>
 			<li><a href="/admin/ram">Add Ram</a></li>
+			<li><a href="/admin/internalmemory">Add Internal Memory</a></li>
+			<li><a href="/admin/cardmemory">Add Card Memory</a></li>
 			<li><a href="/admin/numberofsimcards">Add Number Of Sim Cards</a></li>
 			<li><a href="/admin/color">Add Color</a></li>
 			<li><a href="/admin/comment">Add Comment</a></li>

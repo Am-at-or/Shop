@@ -25,8 +25,10 @@ public class Phone extends AbstractEntity {
 	private Processor processor;
 	@ManyToOne
 	private Ram ram;
-	private int internal;
-	private int card;
+	@ManyToOne
+	private InternalMemory internal;
+	@ManyToOne
+	private CardMemory card;
 	@ManyToOne
 	private NumberOfSimCards numberOfSimCards;
 	@ManyToOne
@@ -109,19 +111,19 @@ public class Phone extends AbstractEntity {
 		this.ram = ram;
 	}
 
-	public int getInternal() {
+	public InternalMemory getInternal() {
 		return internal;
 	}
 
-	public void setInternal(int internal) {
+	public void setInternal(InternalMemory internal) {
 		this.internal = internal;
 	}
 
-	public int getCard() {
+	public CardMemory getCard() {
 		return card;
 	}
 
-	public void setCard(int card) {
+	public void setCard(CardMemory card) {
 		this.card = card;
 	}
 

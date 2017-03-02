@@ -3,8 +3,10 @@ package ua.com.shop.service;
 import java.util.List;
 
 import ua.com.shop.dto.form.PhoneForm;
+import ua.com.shop.entity.CardMemory;
 import ua.com.shop.entity.Color;
 import ua.com.shop.entity.Display;
+import ua.com.shop.entity.InternalMemory;
 import ua.com.shop.entity.Maker;
 import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
@@ -28,8 +30,9 @@ public interface PhoneService {
 
 	Phone findUnique(Maker maker, String model, int price, Display display,
 			int primaryCamera, int secondaryCamera, Processor processor,
-			Ram ram, int internal, int card, NumberOfSimCards numberOfSimCards,
-			OperatingSystem operatingSystem, int battery, Color color);
+			Ram ram, InternalMemory internal, CardMemory card,
+			NumberOfSimCards numberOfSimCards, OperatingSystem operatingSystem,
+			int battery, Color color);
 
 	List<Phone> findPhoneByPrice(int min, int max);
 

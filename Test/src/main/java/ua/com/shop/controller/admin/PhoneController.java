@@ -17,22 +17,28 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.shop.dto.form.PhoneForm;
+import ua.com.shop.editor.CardMemoryEditor;
 import ua.com.shop.editor.ColorEditor;
 import ua.com.shop.editor.DisplayEditor;
+import ua.com.shop.editor.InternalMemoryEditor;
 import ua.com.shop.editor.MakerEditor;
 import ua.com.shop.editor.NumberOfSimCardsEditor;
 import ua.com.shop.editor.OperatingSystemEditor;
 import ua.com.shop.editor.ProcessorEditor;
 import ua.com.shop.editor.RamEditor;
+import ua.com.shop.entity.CardMemory;
 import ua.com.shop.entity.Color;
 import ua.com.shop.entity.Display;
+import ua.com.shop.entity.InternalMemory;
 import ua.com.shop.entity.Maker;
 import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Processor;
 import ua.com.shop.entity.Ram;
+import ua.com.shop.service.CardMemoryService;
 import ua.com.shop.service.ColorService;
 import ua.com.shop.service.DisplayService;
+import ua.com.shop.service.InternalMemoryService;
 import ua.com.shop.service.MakerService;
 import ua.com.shop.service.NumberOfSimCardsService;
 import ua.com.shop.service.OperatingSystemService;
@@ -62,6 +68,12 @@ public class PhoneController {
 	private RamService ramService;
 
 	@Autowired
+	private InternalMemoryService internalMemoryService;
+
+	@Autowired
+	private CardMemoryService cardMemoryService;
+
+	@Autowired
 	private NumberOfSimCardsService numberOfSimCardsService;
 
 	@Autowired
@@ -78,6 +90,10 @@ public class PhoneController {
 		binder.registerCustomEditor(Processor.class, new ProcessorEditor(
 				processorService));
 		binder.registerCustomEditor(Ram.class, new RamEditor(ramService));
+		binder.registerCustomEditor(InternalMemory.class,
+				new InternalMemoryEditor(internalMemoryService));
+		binder.registerCustomEditor(CardMemory.class, new CardMemoryEditor(
+				cardMemoryService));
 		binder.registerCustomEditor(NumberOfSimCards.class,
 				new NumberOfSimCardsEditor(numberOfSimCardsService));
 		binder.registerCustomEditor(OperatingSystem.class,
@@ -98,6 +114,8 @@ public class PhoneController {
 		model.addAttribute("displays", displayService.findAll());
 		model.addAttribute("processors", processorService.findAll());
 		model.addAttribute("rams", ramService.findAll());
+		model.addAttribute("internalmemories", internalMemoryService.findAll());
+		model.addAttribute("cardmemories", cardMemoryService.findAll());
 		model.addAttribute("numberofsimcardss",
 				numberOfSimCardsService.findAll());
 		model.addAttribute("operatingsystems", operatingSystemService.findAll());

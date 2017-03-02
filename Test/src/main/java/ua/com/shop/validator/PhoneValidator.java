@@ -83,7 +83,7 @@ public class PhoneValidator implements Validator {
 					form.getCard(), form.getNumberOfSimCards(),
 					form.getOperatingSystem(), form.getBattery(),
 					form.getColor()) != null) {
-				errors.rejectValue("model", "", "Already exist!");
+				errors.rejectValue("ifExist", "", "Already exist!");
 			}
 		}
 	}
