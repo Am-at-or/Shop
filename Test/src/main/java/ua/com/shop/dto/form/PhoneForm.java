@@ -3,8 +3,10 @@ package ua.com.shop.dto.form;
 import ua.com.shop.entity.Color;
 import ua.com.shop.entity.Display;
 import ua.com.shop.entity.Maker;
+import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Processor;
+import ua.com.shop.entity.Ram;
 
 public class PhoneForm {
 
@@ -16,10 +18,10 @@ public class PhoneForm {
 	private int primaryCamera;
 	private int secondaryCamera;
 	private Processor processor;
-	private int ram;
+	private Ram ram;
 	private int internal;
 	private int card;
-	private int numberOfSimCards;
+	private NumberOfSimCards numberOfSimCards;
 	private OperatingSystem operatingSystem;
 	private int battery;
 	private Color color;
@@ -88,11 +90,11 @@ public class PhoneForm {
 		this.processor = processor;
 	}
 
-	public int getRam() {
+	public Ram getRam() {
 		return ram;
 	}
 
-	public void setRam(int ram) {
+	public void setRam(Ram ram) {
 		this.ram = ram;
 	}
 
@@ -112,11 +114,11 @@ public class PhoneForm {
 		this.card = card;
 	}
 
-	public int getNumberOfSimCards() {
+	public NumberOfSimCards getNumberOfSimCards() {
 		return numberOfSimCards;
 	}
 
-	public void setNumberOfSimCards(int numberOfSimCards) {
+	public void setNumberOfSimCards(NumberOfSimCards numberOfSimCards) {
 		this.numberOfSimCards = numberOfSimCards;
 	}
 

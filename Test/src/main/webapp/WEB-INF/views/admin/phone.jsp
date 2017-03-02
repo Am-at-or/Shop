@@ -86,7 +86,8 @@
 			<div class="form-group">
 				<label for="ram" class="col-sm-2 control-label">RAM</label>
 				<div class="col-sm-10">
-					<form:input class="form-control" path="ram" id="ram" />
+					<form:select class="form-control" path="ram" id="ram"
+						items="${rams}" itemValue="id" itemLabel="ram" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -112,11 +113,10 @@
 						path="numberOfSimCards" /></label>
 			</div>
 			<div class="form-group">
-				<label for="numberOfSimCards" class="col-sm-2 control-label">Number
-					Of SimCards</label>
+				<label for="numberOfSimCards" class="col-sm-2 control-label">Number Of Sim Cards</label>
 				<div class="col-sm-10">
-					<form:input class="form-control" path="numberOfSimCards"
-						id="numberOfSimCards" />
+					<form:select class="form-control" path="numberOfSimCards" id="numberOfSimCards"
+						items="${numberofsimcardss}" itemValue="id" itemLabel="simCards" />
 				</div>
 			</div>
 			<div class="form-group">

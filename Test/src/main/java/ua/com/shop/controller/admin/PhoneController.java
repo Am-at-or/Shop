@@ -20,19 +20,25 @@ import ua.com.shop.dto.form.PhoneForm;
 import ua.com.shop.editor.ColorEditor;
 import ua.com.shop.editor.DisplayEditor;
 import ua.com.shop.editor.MakerEditor;
+import ua.com.shop.editor.NumberOfSimCardsEditor;
 import ua.com.shop.editor.OperatingSystemEditor;
 import ua.com.shop.editor.ProcessorEditor;
+import ua.com.shop.editor.RamEditor;
 import ua.com.shop.entity.Color;
 import ua.com.shop.entity.Display;
 import ua.com.shop.entity.Maker;
+import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Processor;
+import ua.com.shop.entity.Ram;
 import ua.com.shop.service.ColorService;
 import ua.com.shop.service.DisplayService;
 import ua.com.shop.service.MakerService;
+import ua.com.shop.service.NumberOfSimCardsService;
 import ua.com.shop.service.OperatingSystemService;
 import ua.com.shop.service.PhoneService;
 import ua.com.shop.service.ProcessorService;
+import ua.com.shop.service.RamService;
 import ua.com.shop.validator.PhoneValidator;
 
 @Controller
@@ -53,6 +59,12 @@ public class PhoneController {
 	private ProcessorService processorService;
 
 	@Autowired
+	private RamService ramService;
+
+	@Autowired
+	private NumberOfSimCardsService numberOfSimCardsService;
+
+	@Autowired
 	private OperatingSystemService operatingSystemService;
 
 	@Autowired
@@ -65,6 +77,9 @@ public class PhoneController {
 				displayService));
 		binder.registerCustomEditor(Processor.class, new ProcessorEditor(
 				processorService));
+		binder.registerCustomEditor(Ram.class, new RamEditor(ramService));
+		binder.registerCustomEditor(NumberOfSimCards.class,
+				new NumberOfSimCardsEditor(numberOfSimCardsService));
 		binder.registerCustomEditor(OperatingSystem.class,
 				new OperatingSystemEditor(operatingSystemService));
 		binder.registerCustomEditor(Color.class, new ColorEditor(colorService));
@@ -82,6 +97,9 @@ public class PhoneController {
 		model.addAttribute("makers", makerService.findAll());
 		model.addAttribute("displays", displayService.findAll());
 		model.addAttribute("processors", processorService.findAll());
+		model.addAttribute("rams", ramService.findAll());
+		model.addAttribute("numberofsimcardss",
+				numberOfSimCardsService.findAll());
 		model.addAttribute("operatingsystems", operatingSystemService.findAll());
 		model.addAttribute("colors", colorService.findAll());
 		return "admin-phone";

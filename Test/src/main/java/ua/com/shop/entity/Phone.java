@@ -23,10 +23,12 @@ public class Phone extends AbstractEntity {
 	private int secondaryCamera;
 	@ManyToOne
 	private Processor processor;
-	private int ram;
+	@ManyToOne
+	private Ram ram;
 	private int internal;
 	private int card;
-	private int numberOfSimCards;
+	@ManyToOne
+	private NumberOfSimCards numberOfSimCards;
 	@ManyToOne
 	private OperatingSystem operatingSystem;
 	private int battery;
@@ -99,11 +101,11 @@ public class Phone extends AbstractEntity {
 		this.processor = processor;
 	}
 
-	public int getRam() {
+	public Ram getRam() {
 		return ram;
 	}
 
-	public void setRam(int ram) {
+	public void setRam(Ram ram) {
 		this.ram = ram;
 	}
 
@@ -123,11 +125,11 @@ public class Phone extends AbstractEntity {
 		this.card = card;
 	}
 
-	public int getNumberOfSimCards() {
+	public NumberOfSimCards getNumberOfSimCards() {
 		return numberOfSimCards;
 	}
 
-	public void setNumberOfSimCards(int numberOfSimCards) {
+	public void setNumberOfSimCards(NumberOfSimCards numberOfSimCards) {
 		this.numberOfSimCards = numberOfSimCards;
 	}
 

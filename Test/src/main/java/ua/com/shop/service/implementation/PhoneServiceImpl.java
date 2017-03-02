@@ -10,9 +10,11 @@ import ua.com.shop.dto.form.PhoneForm;
 import ua.com.shop.entity.Color;
 import ua.com.shop.entity.Display;
 import ua.com.shop.entity.Maker;
+import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Phone;
 import ua.com.shop.entity.Processor;
+import ua.com.shop.entity.Ram;
 import ua.com.shop.service.PhoneService;
 
 @Service
@@ -91,13 +93,14 @@ public class PhoneServiceImpl implements PhoneService {
 	@Override
 	public Phone findUnique(Maker maker, String model, int price,
 			Display display, int primaryCamera, int secondaryCamera,
-			Processor processor, int ram, int internal, int card,
-			int numberOfSimCards, OperatingSystem operatingSystem, int battery,
-			Color color) {
+			Processor processor, Ram ram, int internal, int card,
+			NumberOfSimCards numberOfSimCards, OperatingSystem operatingSystem,
+			int battery, Color color) {
 		return phoneDao.findUnique(maker.getId(), model, price,
 				display.getId(), primaryCamera, secondaryCamera,
-				processor.getId(), ram, internal, card, numberOfSimCards,
-				operatingSystem.getId(), battery, color.getId());
+				processor.getId(), ram.getId(), internal, card,
+				numberOfSimCards.getId(), operatingSystem.getId(), battery,
+				color.getId());
 	}
 
 }
