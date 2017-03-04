@@ -6,15 +6,13 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<form:form class="form" action="/admin/maker"
-				method="POST" modelAttribute="maker">
+			<form:form class="form" action="/admin/maker" method="POST"
+				modelAttribute="maker">
 				<div class="form-group">
-					<label class="control-label" for="maker"
+					<label for="maker" class="control-label">Maker name</label> <label
+						class="control-label" for="maker"
 						style="color: red; text-align: left;"><form:errors
 							path="name" /></label>
-				</div>
-				<div class="form-group">
-					<label for="maker" class="control-label">Maker name</label>
 					<form:input class="form-control" path="name" id="maker" />
 				</div>
 				<div class="form-group" style="margin-top: 45px">

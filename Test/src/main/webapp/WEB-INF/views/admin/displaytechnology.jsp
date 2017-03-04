@@ -9,12 +9,10 @@
 			<form:form class="form" action="/admin/displaytechnology"
 				method="POST" modelAttribute="displaytechnology">
 				<div class="form-group">
-					<label class="control-label" for="technology"
+					<label for="technology" class="control-label">Technology</label> <label
+						class="control-label" for="technology"
 						style="color: red; text-align: left;"><form:errors
 							path="technology" /></label>
-				</div>
-				<div class="form-group">
-					<label for="technology" class="control-label">Technology</label>
 					<form:input class="form-control" path="technology" id="technology" />
 				</div>
 				<div class="form-group" style="margin-top: 45px">

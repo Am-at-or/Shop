@@ -9,12 +9,10 @@
 			<form:form class="form" action="/admin/displayheight" method="POST"
 				modelAttribute="displayheight">
 				<div class="form-group">
-					<label class="control-label" for="height"
+					<label for="height" class="control-label">Height</label> <label
+						class="control-label" for="height"
 						style="color: red; text-align: left;"><form:errors
 							path="height" /></label>
-				</div>
-				<div class="form-group">
-					<label for="height" class="control-label">Height</label>
 					<form:input class="form-control" path="height" id="height" />
 				</div>
 				<div class="form-group">

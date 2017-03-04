@@ -9,12 +9,10 @@
 			<form:form class="form" action="/admin/displaysize" method="POST"
 				modelAttribute="displaysize">
 				<div class="form-group">
-					<label class="control-label" for="size"
+					<label for="size" class="control-label">Size</label> <label
+						class="control-label" for="size"
 						style="color: red; text-align: left;"><form:errors
 							path="size" /></label>
-				</div>
-				<div class="form-group">
-					<label for="size" class="control-label">Size</label>
 					<form:input class="form-control" path="size" id="size" />
 				</div>
 				<div class="form-group">

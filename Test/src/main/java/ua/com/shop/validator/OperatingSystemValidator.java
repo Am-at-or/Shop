@@ -33,12 +33,12 @@ public class OperatingSystemValidator implements Validator {
 				"Can't be empty");
 		if (!REG.matcher(form.getVersion()).matches()) {
 			errors.rejectValue("version", "",
-					"Enter numbers [0-9]{1,9}\\.[0-9]{1,2}!");
+					"Error");
 		}
 		if (errors.getFieldError("version") == null) {
 			if (operatingSystemService.findUnique(form.getName(),
 					form.getVersion()) != null) {
-				errors.rejectValue("version", "", "Already exist!");
+				errors.rejectValue("ifExist", "", "Already exist!");
 			}
 		}
 	}

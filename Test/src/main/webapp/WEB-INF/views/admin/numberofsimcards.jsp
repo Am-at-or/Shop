@@ -9,13 +9,11 @@
 			<form:form class="form" action="/admin/numberofsimcards"
 				method="POST" modelAttribute="numberofsimcards">
 				<div class="form-group">
-					<label class="control-label" for="simCards"
+					<label for="simCards" class="control-label">Number SIM</label> <label
+						class="control-label" for="simCards"
 						style="color: red; text-align: left;"><form:errors
 							path="simCards" /></label>
-				</div>
-				<div class="form-group">
-					<label for="simCards" class="control-label">Number SIM</label>
-					<form:input class="form-control" path="simCards" id="simCards"/>
+					<form:input class="form-control" path="simCards" id="simCards" />
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="ifExist"

@@ -7,6 +7,7 @@ public class OperatingSystemForm {
 	private int id;
 	private OSName name;
 	private String version;
+	private String ifExist;
 
 	public int getId() {
 		return id;
@@ -30,6 +31,14 @@ public class OperatingSystemForm {
 
 	public void setVersion(String version) {
 		this.version = version;
+	}
+
+	public String getIfExist() {
+		return ifExist;
+	}
+
+	public void setIfExist(String ifExist) {
+		this.ifExist = ifExist;
 	}
 
 }

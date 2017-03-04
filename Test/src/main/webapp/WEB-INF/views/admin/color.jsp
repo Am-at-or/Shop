@@ -9,12 +9,10 @@
 			<form:form class="form" action="/admin/color" method="POST"
 				modelAttribute="color">
 				<div class="form-group">
-					<label class="control-label" for="color"
+					<label for="color" class="control-label">Color</label> <label
+						class="control-label" for="color"
 						style="color: red; text-align: left;"><form:errors
 							path="color" /></label>
-				</div>
-				<div class="form-group">
-					<label for="color" class="control-label">Color</label>
 					<form:input class="form-control" path="color" id="color" />
 				</div>
 				<div class="form-group" style="margin-top: 45px">
