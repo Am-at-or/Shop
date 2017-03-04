@@ -135,7 +135,7 @@ public class PhoneController {
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model) {
-		model.addAttribute("phone", phoneService.findOne(id));
+		model.addAttribute("phone", phoneService.findForm(id));
 		show(model);
 		return "admin-phone";
 	}

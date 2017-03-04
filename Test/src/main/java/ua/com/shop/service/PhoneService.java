@@ -28,11 +28,11 @@ public interface PhoneService {
 
 	PhoneForm findForm(int id);
 
-	Phone findUnique(Maker maker, String model, int price, Display display,
-			int primaryCamera, int secondaryCamera, Processor processor,
+	Phone findUnique(Maker maker, String model, String price, Display display,
+			String primaryCamera, String secondaryCamera, Processor processor,
 			Ram ram, InternalMemory internal, CardMemory card,
 			NumberOfSimCards numberOfSimCards, OperatingSystem operatingSystem,
-			int battery, Color color);
+			String battery, Color color);
 
 	List<Phone> findPhoneByPrice(int min, int max);
 

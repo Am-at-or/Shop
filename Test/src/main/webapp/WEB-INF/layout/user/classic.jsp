@@ -17,10 +17,46 @@
 	crossorigin="anonymous"></script>
 <style type="text/css">
 body {
-	width: 960px;
-	padding-bottom: 70px;
+	background: #989898;
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%,
+		rgba(0, 0, 0, 0.15) 100%),
+		-webkit-radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%,
+		rgba(0, 0, 0, 0.4) 120%);
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%,
+		rgba(0, 0, 0, 0.15) 100%),
+		radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%,
+		rgba(0, 0, 0, 0.4) 120%);
+	background-blend-mode: multiply, multiply;
+	width: 1024px;
+	padding-bottom: 0px;
 	padding-top: 10px;
 	margin: 0 auto;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.edit {
+	margin-bottom: 20px;
+	font-weight: 600;
+	font-family: Verdana;
+	text-align: center;
+}
+
+.form {
+	border-radius: 10px;
+	padding: 30px 40px 60px 40px;
+	background: rgba(0, 0, 0, 0.1);
+	 box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.table-striped {
+	margin-top: 40px;
+}
+
+.nav a {
+	color: #333;
 }
 
 @media ( min-width : 1000px) {

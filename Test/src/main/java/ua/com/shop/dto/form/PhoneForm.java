@@ -15,18 +15,19 @@ public class PhoneForm {
 	private int id;
 	private Maker maker;
 	private String model;
-	private int price;
+	private String price;
 	private Display display;
-	private int primaryCamera;
-	private int secondaryCamera;
+	private String primaryCamera;
+	private String secondaryCamera;
 	private Processor processor;
 	private Ram ram;
 	private InternalMemory internal;
 	private CardMemory card;
 	private NumberOfSimCards numberOfSimCards;
 	private OperatingSystem operatingSystem;
-	private int battery;
+	private String battery;
 	private Color color;
+	private String ifExist;
 
 	public int getId() {
 		return id;
@@ -52,11 +53,11 @@ public class PhoneForm {
 		this.model = model;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -68,19 +69,19 @@ public class PhoneForm {
 		this.display = display;
 	}
 
-	public int getPrimaryCamera() {
+	public String getPrimaryCamera() {
 		return primaryCamera;
 	}
 
-	public void setPrimaryCamera(int primaryCamera) {
+	public void setPrimaryCamera(String primaryCamera) {
 		this.primaryCamera = primaryCamera;
 	}
 
-	public int getSecondaryCamera() {
+	public String getSecondaryCamera() {
 		return secondaryCamera;
 	}
 
-	public void setSecondaryCamera(int secondaryCamera) {
+	public void setSecondaryCamera(String secondaryCamera) {
 		this.secondaryCamera = secondaryCamera;
 	}
 
@@ -132,11 +133,11 @@ public class PhoneForm {
 		this.operatingSystem = operatingSystem;
 	}
 
-	public int getBattery() {
+	public String getBattery() {
 		return battery;
 	}
 
-	public void setBattery(int battery) {
+	public void setBattery(String battery) {
 		this.battery = battery;
 	}
 
@@ -146,6 +147,14 @@ public class PhoneForm {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	public String getIfExist() {
+		return ifExist;
+	}
+
+	public void setIfExist(String ifExist) {
+		this.ifExist = ifExist;
 	}
 
 }

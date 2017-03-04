@@ -31,17 +31,17 @@ public class PhoneServiceImpl implements PhoneService {
 		entity.setId(form.getId());
 		entity.setMaker(form.getMaker());
 		entity.setModel(form.getModel());
-		entity.setPrice(form.getPrice());
+		entity.setPrice(Integer.valueOf(form.getPrice()));
 		entity.setDisplay(form.getDisplay());
-		entity.setPrimaryCamera(form.getPrimaryCamera());
-		entity.setSecondaryCamera(form.getSecondaryCamera());
+		entity.setPrimaryCamera(Integer.valueOf(form.getPrimaryCamera()));
+		entity.setSecondaryCamera(Integer.valueOf(form.getSecondaryCamera()));
 		entity.setProcessor(form.getProcessor());
 		entity.setRam(form.getRam());
 		entity.setInternal(form.getInternal());
 		entity.setCard(form.getCard());
 		entity.setNumberOfSimCards(form.getNumberOfSimCards());
 		entity.setOperatingSystem(form.getOperatingSystem());
-		entity.setBattery(form.getBattery());
+		entity.setBattery(Integer.valueOf(form.getBattery()));
 		entity.setColor(form.getColor());
 		phoneDao.save(entity);
 	}
@@ -77,32 +77,34 @@ public class PhoneServiceImpl implements PhoneService {
 		form.setId(entity.getId());
 		form.setMaker(entity.getMaker());
 		form.setModel(entity.getModel());
-		form.setPrice(entity.getPrice());
+		form.setPrice(String.valueOf(entity.getPrice()));
 		form.setDisplay(entity.getDisplay());
-		form.setPrimaryCamera(entity.getPrimaryCamera());
-		form.setSecondaryCamera(entity.getSecondaryCamera());
+		form.setPrimaryCamera(String.valueOf(entity.getPrimaryCamera()));
+		form.setSecondaryCamera(String.valueOf(entity.getSecondaryCamera()));
 		form.setProcessor(entity.getProcessor());
 		form.setRam(entity.getRam());
 		form.setInternal(entity.getInternal());
 		form.setCard(entity.getCard());
 		form.setNumberOfSimCards(entity.getNumberOfSimCards());
 		form.setOperatingSystem(entity.getOperatingSystem());
-		form.setBattery(entity.getBattery());
+		form.setBattery(String.valueOf(entity.getBattery()));
 		form.setColor(entity.getColor());
 		return form;
 	}
 
 	@Override
-	public Phone findUnique(Maker maker, String model, int price,
-			Display display, int primaryCamera, int secondaryCamera,
+	public Phone findUnique(Maker maker, String model, String price,
+			Display display, String primaryCamera, String secondaryCamera,
 			Processor processor, Ram ram, InternalMemory internal,
 			CardMemory card, NumberOfSimCards numberOfSimCards,
-			OperatingSystem operatingSystem, int battery, Color color) {
-		return phoneDao.findUnique(maker.getId(), model, price,
-				display.getId(), primaryCamera, secondaryCamera,
-				processor.getId(), ram.getId(), internal.getId(), card.getId(),
-				numberOfSimCards.getId(), operatingSystem.getId(), battery,
-				color.getId());
+			OperatingSystem operatingSystem, String battery, Color color) {
+		return phoneDao.findUnique(maker.getId(), model,
+				Integer.valueOf(price), display.getId(),
+				Integer.valueOf(primaryCamera),
+				Integer.valueOf(secondaryCamera), processor.getId(),
+				ram.getId(), internal.getId(), card.getId(),
+				numberOfSimCards.getId(), operatingSystem.getId(),
+				Integer.valueOf(battery), color.getId());
 	}
 
 }
