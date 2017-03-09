@@ -49,10 +49,11 @@ body {
 	padding: 30px 40px 60px 40px;
 	background: rgba(0, 0, 0, 0.1);
 	 box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	 margin-bottom: 30px;
 }
 
 .table-striped {
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 .nav a {

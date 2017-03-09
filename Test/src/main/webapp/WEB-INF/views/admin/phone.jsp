@@ -44,7 +44,7 @@
 						<label for="display" class="control-label">Display</label>
 						<form:select class="form-control" path="display">
 							<c:forEach items="${displays}" var="display">
-								<form:option value="${display.id}">${display.size.size},
+								<form:option value="${display.id}">${display.value.value},
 			${display.width.width}x${display.height.height},
 			${display.technology.technology}</form:option>
 							</c:forEach>
@@ -176,7 +176,7 @@
 			<c:forEach items="${phones}" var="phone">
 				<tr>
 					<td>${phone.maker.name} ${phone.model} $${phone.price}</td>
-					<td>${phone.display.size.size}
+					<td>${phone.display.value.value}
 						(${phone.display.width.width}x${phone.display.height.height})
 						${phone.display.technology.technology}</td>
 					<td>Primary - ${phone.primaryCamera} Secondary -

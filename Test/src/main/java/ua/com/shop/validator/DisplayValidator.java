@@ -22,7 +22,7 @@ public class DisplayValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Display display = (Display) target;
-		if (displayService.findUnique(display.getSize(), display.getWidth(),
+		if (displayService.findUnique(display.getValue(), display.getWidth(),
 				display.getHeight(), display.getTechnology()) != null) {
 			errors.rejectValue("technology", "", "Already exist!");
 		}

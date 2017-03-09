@@ -7,21 +7,21 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
-public class DisplaySize extends AbstractEntity {
+public class DisplayValue extends AbstractEntity {
 
-	private double size;
-	@OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
+	private double value;
+	@OneToMany(mappedBy = "value", fetch = FetchType.LAZY)
 	private List<Display> displays;
 
-	public DisplaySize() {
+	public DisplayValue() {
 	}
 
-	public double getSize() {
-		return size;
+	public double getValue() {
+		return value;
 	}
 
-	public void setSize(double size) {
-		this.size = size;
+	public void setValue(double value) {
+		this.value = value;
 	}
 
 	public List<Display> getDisplays() {

@@ -1,9 +1,9 @@
 package ua.com.shop.dto.form;
 
-public class DisplaySizeForm {
+public class DisplayValueForm {
 
 	private int id;
-	private String size;
+	private String value;
 	private String ifExist;
 
 	public int getId() {
@@ -14,12 +14,12 @@ public class DisplaySizeForm {
 		this.id = id;
 	}
 
-	public String getSize() {
-		return size;
+	public String getValue() {
+		return value;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	public String getIfExist() {

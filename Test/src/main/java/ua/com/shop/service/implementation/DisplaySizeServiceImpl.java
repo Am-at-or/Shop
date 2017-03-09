@@ -5,57 +5,57 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ua.com.shop.dao.DisplaySizeDao;
-import ua.com.shop.dto.form.DisplaySizeForm;
-import ua.com.shop.entity.DisplaySize;
-import ua.com.shop.service.DisplaySizeService;
+import ua.com.shop.dao.DisplayValueDao;
+import ua.com.shop.dto.form.DisplayValueForm;
+import ua.com.shop.entity.DisplayValue;
+import ua.com.shop.service.DisplayValueService;
 
 @Service
-public class DisplaySizeServiceImpl implements DisplaySizeService {
+public class DisplaySizeServiceImpl implements DisplayValueService {
 
 	@Autowired
-	private DisplaySizeDao displaySizeDao;
+	private DisplayValueDao displayValueDao;
 
 	@Override
-	public void save(DisplaySizeForm form) {
-		DisplaySize entity = new DisplaySize();
+	public void save(DisplayValueForm form) {
+		DisplayValue entity = new DisplayValue();
 		entity.setId(form.getId());
-		entity.setSize(Double.valueOf(form.getSize()));
-		displaySizeDao.save(entity);
+		entity.setValue(Double.valueOf(form.getValue()));
+		displayValueDao.save(entity);
 	}
 
 	@Override
-	public DisplaySize findOne(int id) {
-		return displaySizeDao.findOne(id);
+	public DisplayValue findOne(int id) {
+		return displayValueDao.findOne(id);
 	}
 
 	@Override
-	public List<DisplaySize> findAll() {
-		return displaySizeDao.findAll();
+	public List<DisplayValue> findAll() {
+		return displayValueDao.findAll();
 	}
 
 	@Override
 	public void delete(int id) {
-		displaySizeDao.delete(id);
+		displayValueDao.delete(id);
 	}
 
 	@Override
-	public void update(DisplaySize displaySize) {
-		displaySizeDao.save(displaySize);
+	public void update(DisplayValue displayValue) {
+		displayValueDao.save(displayValue);
 	}
 
 	@Override
-	public DisplaySizeForm findForm(int id) {
-		DisplaySizeForm form = new DisplaySizeForm();
-		DisplaySize entity = displaySizeDao.findOne(id);
+	public DisplayValueForm findForm(int id) {
+		DisplayValueForm form = new DisplayValueForm();
+		DisplayValue entity = displayValueDao.findOne(id);
 		form.setId(entity.getId());
-		form.setSize(String.valueOf(entity.getSize()));
+		form.setValue(String.valueOf(entity.getValue()));
 		return form;
 	}
 
 	@Override
-	public DisplaySize findUnique(String size) {
-		return displaySizeDao.findUnique(Double.valueOf(size));
+	public DisplayValue findUnique(String value) {
+		return displayValueDao.findUnique(Double.valueOf(value));
 	}
 
 }

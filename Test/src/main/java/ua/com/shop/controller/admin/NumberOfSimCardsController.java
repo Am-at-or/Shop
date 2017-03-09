@@ -1,8 +1,12 @@
 package ua.com.shop.controller.admin;
 
+import static ua.com.shop.util.ParamBuilder.getParams;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.com.shop.dto.filter.DisplayFilter;
 import ua.com.shop.dto.form.NumberOfSimCardsForm;
 import ua.com.shop.service.NumberOfSimCardsService;
 import ua.com.shop.validator.NumberOfSimCardsValidator;
@@ -34,42 +39,54 @@ public class NumberOfSimCardsController {
 				numberOfSimCardsService));
 	}
 
+	@ModelAttribute("filter")
+	public DisplayFilter getFilter() {
+		return new DisplayFilter();
+	}
+
 	@ModelAttribute("numberofsimcards")
 	public NumberOfSimCardsForm getForm() {
 		return new NumberOfSimCardsForm();
 	}
 
 	@GetMapping
-	public String show(Model model) {
-		model.addAttribute("numberofsimcardss",
-				numberOfSimCardsService.findAll());
+	public String show(Model model, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") DisplayFilter filter) {
+		model.addAttribute("page",
+				numberOfSimCardsService.findAll(pageable, filter));
 		return "admin-numberofsimcards";
 	}
 
 	@PostMapping
 	public String save(
 			@ModelAttribute("numberofsimcards") @Valid NumberOfSimCardsForm numberOfSimCardsForm,
-			BindingResult br, Model model, SessionStatus status) {
+			BindingResult br, Model model, SessionStatus status,
+			@PageableDefault Pageable pageable,
+			@ModelAttribute("filter") DisplayFilter filter) {
 		if (br.hasErrors()) {
-			return show(model);
+			return show(model, pageable, filter);
 		}
 		numberOfSimCardsService.save(numberOfSimCardsForm);
 		status.setComplete();
-		return "redirect:/admin/numberofsimcards";
+		return "redirect:/admin/numberofsimcards" + getParams(pageable, filter);
 	}
 
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable int id, Model model) {
+	public String update(@PathVariable int id, Model model,
+			@PageableDefault Pageable pageable,
+			@ModelAttribute("filter") DisplayFilter filter) {
 		model.addAttribute("numberofsimcards",
 				numberOfSimCardsService.findForm(id));
-		show(model);
+		show(model, pageable, filter);
 		return "admin-numberofsimcards";
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable int id) {
+	public String delete(@PathVariable int id,
+			@PageableDefault Pageable pageable,
+			@ModelAttribute("filter") DisplayFilter filter) {
 		numberOfSimCardsService.delete(id);
-		return "redirect:/admin/numberofsimcards";
+		return "redirect:/admin/numberofsimcards" + getParams(pageable, filter);
 	}
 
 }

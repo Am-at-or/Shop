@@ -3,12 +3,16 @@ package ua.com.shop.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.com.shop.dao.NumberOfSimCardsDao;
+import ua.com.shop.dto.filter.DisplayFilter;
 import ua.com.shop.dto.form.NumberOfSimCardsForm;
 import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.service.NumberOfSimCardsService;
+import ua.com.shop.specification.DisplaySpecification;
 
 @Service
 public class NumberOfSimCardsImpl implements NumberOfSimCardsService {
@@ -56,6 +60,13 @@ public class NumberOfSimCardsImpl implements NumberOfSimCardsService {
 	@Override
 	public NumberOfSimCards findUnique(String simCards) {
 		return numberOfSimCardsDao.findUnique(Integer.valueOf(simCards));
+	}
+
+	@Override
+	public Page<NumberOfSimCards> findAll(Pageable pageable,
+			DisplayFilter filter) {
+		return numberOfSimCardsDao.findAll(new DisplaySpecification(
+				filter), pageable);
 	}
 
 }

@@ -16,56 +16,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.shop.dto.form.DisplaySizeForm;
-import ua.com.shop.service.DisplaySizeService;
-import ua.com.shop.validator.DisplaySizeValidator;
+import ua.com.shop.dto.form.DisplayValueForm;
+import ua.com.shop.service.DisplayValueService;
+import ua.com.shop.validator.DisplayValueValidator;
 
 @Controller
-@RequestMapping("/admin/displaysize")
+@RequestMapping("/admin/displayvalue")
 @SessionAttributes("displaysize")
 public class DisplaySizeController {
 
 	@Autowired
-	private DisplaySizeService displaySizeService;
+	private DisplayValueService displayValueService;
 
-	@InitBinder("displaysize")
+	@InitBinder("displayvalue")
 	protected void bind(WebDataBinder binder) {
-		binder.setValidator(new DisplaySizeValidator(displaySizeService));
+		binder.setValidator(new DisplayValueValidator(displayValueService));
 	}
 
-	@ModelAttribute("displaysize")
-	public DisplaySizeForm getForm() {
-		return new DisplaySizeForm();
+	@ModelAttribute("displayvalue")
+	public DisplayValueForm getForm() {
+		return new DisplayValueForm();
 	}
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("displaysizes", displaySizeService.findAll());
-		return "admin-displaysize";
+		model.addAttribute("displayvalues", displayValueService.findAll());
+		return "admin-displayvalue";
 	}
 
 	@PostMapping
 	public String save(
-			@ModelAttribute("displaysize") @Valid DisplaySizeForm displaySizeForm,
+			@ModelAttribute("displayvalue") @Valid DisplayValueForm displayValueForm,
 			BindingResult br, Model model, SessionStatus status) {
 		if (br.hasErrors())
 			return show(model);
-		displaySizeService.save(displaySizeForm);
+		displayValueService.save(displayValueForm);
 		status.setComplete();
-		return "redirect:/admin/displaysize";
+		return "redirect:/admin/displayvalue";
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model) {
-		model.addAttribute("displaysize", displaySizeService.findForm(id));
+		model.addAttribute("displayvalue", displayValueService.findForm(id));
 		show(model);
-		return "admin-displaysize";
+		return "admin-displayvalue";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable int id) {
-		displaySizeService.delete(id);
-		return "redirect:/admin/displaysize";
+		displayValueService.delete(id);
+		return "redirect:/admin/displayvalue";
 	}
 
 }

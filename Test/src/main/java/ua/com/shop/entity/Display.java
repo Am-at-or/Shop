@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 public class Display extends AbstractEntity {
 
 	@ManyToOne
-	private DisplaySize size;
+	private DisplayValue value;
 	@ManyToOne
 	private DisplayWidth width;
 	@ManyToOne
@@ -24,12 +24,12 @@ public class Display extends AbstractEntity {
 	public Display() {
 	}
 
-	public DisplaySize getSize() {
-		return size;
+	public DisplayValue getValue() {
+		return value;
 	}
 
-	public void setSize(DisplaySize size) {
-		this.size = size;
+	public void setValue(DisplayValue value) {
+		this.value = value;
 	}
 
 	public DisplayWidth getWidth() {

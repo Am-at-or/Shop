@@ -6,14 +6,14 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<form:form class="form" action="/admin/displaysize" method="POST"
-				modelAttribute="displaysize">
+			<form:form class="form" action="/admin/displayvalue" method="POST"
+				modelAttribute="displayvalue">
 				<div class="form-group">
-					<label for="size" class="control-label">Size</label> <label
-						class="control-label" for="size"
+					<label for="value" class="control-label">Size</label> <label
+						class="control-label" for="value"
 						style="color: red; text-align: left;"><form:errors
-							path="size" /></label>
-					<form:input class="form-control" path="size" id="size" />
+							path="value" /></label>
+					<form:input class="form-control" path="value" id="value" />
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="ifExist"
@@ -35,13 +35,13 @@
 				<th class="text-center">Update</th>
 				<th class="text-center">Delete</th>
 			</tr>
-			<c:forEach items="${displaysizes}" var="displaysize">
+			<c:forEach items="${displayvalues}" var="displayvalue">
 				<tr>
-					<td>${displaysize.size}</td>
+					<td>${displayvalue.value}</td>
 					<td><a class="btn btn-warning"
-						href="/admin/displaysize/update/${displaysize.id}">Update</a></td>
+						href="/admin/displayvalue/update/${displayvalue.id}">Update</a></td>
 					<td><a class="btn btn-danger"
-						href="/admin/displaysize/delete/${displaysize.id}">Delete</a></td>
+						href="/admin/displayvalue/delete/${displayvalue.id}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
