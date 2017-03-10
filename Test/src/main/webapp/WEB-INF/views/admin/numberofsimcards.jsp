@@ -9,6 +9,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<form:form class="form" action="/admin/numberofsimcards"
 				method="POST" modelAttribute="numberofsimcards">
+				<custom:hiddenInputs excludeParams="simCards" />
 				<div class="form-group">
 					<label for="simCards" class="control-label">Number SIM</label> <label
 						class="control-label" for="simCards"
@@ -31,13 +32,14 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4">
-			<form:form class="form-inline" action="/admin/numberofsimcards"
+			<form:form class="form-horizontal" action="/admin/numberofsimcards"
 				method="GET" modelAttribute="filter">
-				<custom:hiddenInputs excludeParams="min" />
-				<custom:hiddenInputs excludeParams="max" />
-				<div class="form-group">
-					<form:input path="min" class="form-control" placeholder="min" />
-					<form:input path="max" class="form-control" placeholder="max" />
+				<custom:hiddenInputs excludeParams="min, max" />
+				<div class="form-group col-md-5">
+					<form:input path="min" class="form-control" placeholder="Min" />
+				</div>
+				<div class="form-group col-md-5">
+					<form:input path="max" class="form-control" placeholder="Max" />
 				</div>
 				<button type="submit" class="btn btn-primary">Ok</button>
 			</form:form>
@@ -50,8 +52,8 @@
 						Sort <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-						<custom:sort innerHtml="Name asc" paramValue="color" />
-						<custom:sort innerHtml="Name desc" paramValue="color,desc" />
+						<custom:sort innerHtml="Size asc" paramValue="simCards" />
+						<custom:sort innerHtml="Size desc" paramValue="simCards,desc" />
 					</ul>
 				</div>
 			</div>

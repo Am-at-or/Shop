@@ -109,8 +109,7 @@ public class DisplayController {
 			@PageableDefault Pageable pageable,
 			@ModelAttribute("filter") DisplayFilter filter) {
 		model.addAttribute("display", displayService.findOne(id));
-		show(model, pageable, filter);
-		return "admin-display";
+		return show(model, pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")

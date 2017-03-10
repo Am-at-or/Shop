@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import ua.com.shop.dto.filter.DisplayFilter;
+import ua.com.shop.dto.filter.SimpleFilterDecimal;
 import ua.com.shop.dto.form.NumberOfSimCardsForm;
 import ua.com.shop.entity.NumberOfSimCards;
 
@@ -25,6 +25,6 @@ public interface NumberOfSimCardsService {
 
 	NumberOfSimCardsForm findForm(int id);
 
-	Page<NumberOfSimCards> findAll(Pageable pageable, DisplayFilter filter);
+	Page<NumberOfSimCards> findAll(Pageable pageable, SimpleFilterDecimal filter);
 
 }

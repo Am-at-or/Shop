@@ -8,11 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.com.shop.dao.NumberOfSimCardsDao;
-import ua.com.shop.dto.filter.DisplayFilter;
+import ua.com.shop.dto.filter.SimpleFilterDecimal;
 import ua.com.shop.dto.form.NumberOfSimCardsForm;
 import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.service.NumberOfSimCardsService;
-import ua.com.shop.specification.DisplaySpecification;
+import ua.com.shop.specification.NumberOfSimCardsSpecification;
 
 @Service
 public class NumberOfSimCardsImpl implements NumberOfSimCardsService {
@@ -64,8 +64,8 @@ public class NumberOfSimCardsImpl implements NumberOfSimCardsService {
 
 	@Override
 	public Page<NumberOfSimCards> findAll(Pageable pageable,
-			DisplayFilter filter) {
-		return numberOfSimCardsDao.findAll(new DisplaySpecification(
+			SimpleFilterDecimal filter) {
+		return numberOfSimCardsDao.findAll(new NumberOfSimCardsSpecification(
 				filter), pageable);
 	}
 

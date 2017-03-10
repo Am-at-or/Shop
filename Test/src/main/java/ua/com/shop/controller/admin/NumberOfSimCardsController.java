@@ -1,7 +1,5 @@
 package ua.com.shop.controller.admin;
 
-import static ua.com.shop.util.ParamBuilder.getParams;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.com.shop.dto.filter.DisplayFilter;
+import ua.com.shop.dto.filter.SimpleFilterDecimal;
 import ua.com.shop.dto.form.NumberOfSimCardsForm;
 import ua.com.shop.service.NumberOfSimCardsService;
+import ua.com.shop.util.ParamBuilder;
 import ua.com.shop.validator.NumberOfSimCardsValidator;
 
 @Controller
@@ -40,8 +39,8 @@ public class NumberOfSimCardsController {
 	}
 
 	@ModelAttribute("filter")
-	public DisplayFilter getFilter() {
-		return new DisplayFilter();
+	public SimpleFilterDecimal getFilter() {
+		return new SimpleFilterDecimal();
 	}
 
 	@ModelAttribute("numberofsimcards")
@@ -51,7 +50,7 @@ public class NumberOfSimCardsController {
 
 	@GetMapping
 	public String show(Model model, @PageableDefault Pageable pageable,
-			@ModelAttribute("filter") DisplayFilter filter) {
+			@ModelAttribute("filter") SimpleFilterDecimal filter) {
 		model.addAttribute("page",
 				numberOfSimCardsService.findAll(pageable, filter));
 		return "admin-numberofsimcards";
@@ -62,7 +61,7 @@ public class NumberOfSimCardsController {
 			@ModelAttribute("numberofsimcards") @Valid NumberOfSimCardsForm numberOfSimCardsForm,
 			BindingResult br, Model model, SessionStatus status,
 			@PageableDefault Pageable pageable,
-			@ModelAttribute("filter") DisplayFilter filter) {
+			@ModelAttribute("filter") SimpleFilterDecimal filter) {
 		if (br.hasErrors()) {
 			return show(model, pageable, filter);
 		}
@@ -74,7 +73,7 @@ public class NumberOfSimCardsController {
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model,
 			@PageableDefault Pageable pageable,
-			@ModelAttribute("filter") DisplayFilter filter) {
+			@ModelAttribute("filter") SimpleFilterDecimal filter) {
 		model.addAttribute("numberofsimcards",
 				numberOfSimCardsService.findForm(id));
 		show(model, pageable, filter);
@@ -84,9 +83,23 @@ public class NumberOfSimCardsController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable int id,
 			@PageableDefault Pageable pageable,
-			@ModelAttribute("filter") DisplayFilter filter) {
+			@ModelAttribute("filter") SimpleFilterDecimal filter) {
 		numberOfSimCardsService.delete(id);
 		return "redirect:/admin/numberofsimcards" + getParams(pageable, filter);
+	}
+
+	private String getParams(Pageable pageable, SimpleFilterDecimal filter) {
+		String page = ParamBuilder.getParams(pageable);
+		StringBuilder buffer = new StringBuilder(page);
+		if (!filter.getMin().isEmpty()) {
+			buffer.append("&max=");
+			buffer.append(filter.getMin());
+		}
+		if (!filter.getMax().isEmpty()) {
+			buffer.append("&min=");
+			buffer.append(filter.getMax());
+		}
+		return buffer.toString();
 	}
 
 }
