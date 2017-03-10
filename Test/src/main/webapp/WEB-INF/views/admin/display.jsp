@@ -31,7 +31,7 @@
 				</div>
 				<div class="form-group col-md-12">
 					<label for="displaytechnology" class="control-label">Technology</label>
-					<form:select class="form-control" path="technology"
+					<form:select class="form-control chosen-select" path="technology"
 						id="displaytechnology" items="${displaytechnologies}"
 						itemValue="id" itemLabel="technology" />
 				</div>
@@ -50,25 +50,19 @@
 	</div>
 	<div class="row">
 		<div class="col-md-8">
-			<form:form class="form-horizontal" action="/admin/display" method="GET"
-				modelAttribute="filter">
+			<form:form class="form-horizontal" action="/admin/display"
+				method="GET" modelAttribute="filter">
 				<custom:hiddenInputs
 					excludeParams="_displayValueIds, _displayWidthIds, _displayHeightIds, _displayTechnologyIds, displayValueIds, displayWidthIds, displayHeightIds, displayTechnologyIds" />
 				<div class="col-md-2 form-group">
 					<label for="displayvalue" class="control-label">Size</label>
-					<form:select class="form-control" path="displayValueIds"
-						id="displayvalue">
-						<form:option value="">--select--</form:option>
-						<c:forEach items="${displayvalues}" var="displayvalue">
-							<form:option value="${displayvalue.id }">${displayvalue.value}</form:option>
-						</c:forEach>
-					</form:select>
+					<form:select  items="${displayvalues}"
+						path="displayValueIds" itemLabel="value" itemValue="id" />
 				</div>
 				<div class="col-md-3 form-group">
 					<label for="displaywidth" class="control-label">Width</label>
 					<form:select class="form-control" path="displayWidthIds"
 						id="displaywidth">
-						<form:option value="">--select--</form:option>
 						<c:forEach items="${displaywidths}" var="displaywidth">
 							<form:option value="${displaywidth.id}">${displaywidth.width}</form:option>
 						</c:forEach>
@@ -78,7 +72,6 @@
 					<label for="displayheight" class="control-label">Height</label>
 					<form:select class="form-control" path="displayHeightIds"
 						id="displayheight">
-						<form:option value="">--select--</form:option>
 						<c:forEach items="${displayheights}" var="displayheight">
 							<form:option value="${displayheight.id }">${displayheight.height}</form:option>
 						</c:forEach>
@@ -87,9 +80,7 @@
 
 				<div class="col-md-3 form-group">
 					<label for="displaytechnology" class="control-label">Technology</label>
-					<form:select class="form-control" path="displayTechnologyIds"
-						id="displaytechnology">
-						<form:option value="">--select--</form:option>
+					<form:select path="displayTechnologyIds" id="displaytechnology">
 						<c:forEach items="${displaytechnologies}" var="displaytechnology">
 							<form:option value="${displaytechnology.id }">${displaytechnology.technology}</form:option>
 						</c:forEach>

@@ -73,8 +73,7 @@ public class ColorController {
 			@PageableDefault Pageable pageable,
 			@ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("color", colorService.findOne(id));
-		show(model, pageable, filter);
-		return "admin-color";
+		return show(model, pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")

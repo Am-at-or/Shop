@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
 import ua.com.shop.dto.filter.SimpleFilter;
+import ua.com.shop.dto.filter.SimpleFilterDecimal;
 
 public interface ParamBuilder {
 
@@ -45,6 +46,20 @@ public interface ParamBuilder {
 		if (!filter.getSearch().isEmpty()) {
 			buffer.append("&search=");
 			buffer.append(filter.getSearch());
+		}
+		return buffer.toString();
+	}
+
+	public static String getParams(Pageable pageable, SimpleFilterDecimal filter) {
+		String page = getParams(pageable);
+		StringBuilder buffer = new StringBuilder(page);
+		if (!filter.getMin().isEmpty()) {
+			buffer.append("&max=");
+			buffer.append(filter.getMin());
+		}
+		if (!filter.getMax().isEmpty()) {
+			buffer.append("&min=");
+			buffer.append(filter.getMax());
 		}
 		return buffer.toString();
 	}

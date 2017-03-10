@@ -3,15 +3,19 @@ package ua.com.shop.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.com.shop.dao.DisplayValueDao;
+import ua.com.shop.dto.filter.SimpleFilterDecimal;
 import ua.com.shop.dto.form.DisplayValueForm;
 import ua.com.shop.entity.DisplayValue;
 import ua.com.shop.service.DisplayValueService;
+import ua.com.shop.specification.DisplayValueSpecification;
 
 @Service
-public class DisplaySizeServiceImpl implements DisplayValueService {
+public class DisplayValueServiceImpl implements DisplayValueService {
 
 	@Autowired
 	private DisplayValueDao displayValueDao;
@@ -56,6 +60,13 @@ public class DisplaySizeServiceImpl implements DisplayValueService {
 	@Override
 	public DisplayValue findUnique(String value) {
 		return displayValueDao.findUnique(Double.valueOf(value));
+	}
+	
+	@Override
+	public Page<DisplayValue> findAll(Pageable pageable,
+			SimpleFilterDecimal filter) {
+		return displayValueDao.findAll(new DisplayValueSpecification(
+				filter), pageable);
 	}
 
 }

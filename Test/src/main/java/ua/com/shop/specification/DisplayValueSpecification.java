@@ -13,10 +13,9 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
 import ua.com.shop.dto.filter.SimpleFilterDecimal;
-import ua.com.shop.entity.NumberOfSimCards;
+import ua.com.shop.entity.DisplayValue;
 
-public class NumberOfSimCardsSpecification implements
-		Specification<NumberOfSimCards> {
+public class DisplayValueSpecification implements Specification<DisplayValue> {
 
 	private final SimpleFilterDecimal filter;
 
@@ -25,7 +24,7 @@ public class NumberOfSimCardsSpecification implements
 	private final static Pattern PATTERN = Pattern
 			.compile("^([0-9]{1,17}\\.[0-9]{1,2})|([0-9]{1,17}\\,[0-9]{1,2})|([0-9]{1,17})$");
 
-	public NumberOfSimCardsSpecification(SimpleFilterDecimal filter) {
+	public DisplayValueSpecification(SimpleFilterDecimal filter) {
 		this.filter = filter;
 		if (PATTERN.matcher(filter.getMin()).matches()) {
 			filter.setMinValue(new BigDecimal(filter.getMin().replace(',', '.')));
@@ -35,20 +34,20 @@ public class NumberOfSimCardsSpecification implements
 		}
 	}
 
-	private void filterByNumberOfSimCards(Root<NumberOfSimCards> root,
+	private void filterByDisplayValue(Root<DisplayValue> root,
 			CriteriaQuery<?> query, CriteriaBuilder cb) {
 		if (filter.getMinValue() != null) {
-			predicates.add(cb.ge(root.get("simCards"), filter.getMaxValue()));
+			predicates.add(cb.ge(root.get("value"), filter.getMinValue()));
 		}
 		if (filter.getMaxValue() != null) {
-			predicates.add(cb.le(root.get("simCards"), filter.getMinValue()));
+			predicates.add(cb.le(root.get("value"), filter.getMaxValue()));
 		}
 	}
 
 	@Override
-	public Predicate toPredicate(Root<NumberOfSimCards> root,
+	public Predicate toPredicate(Root<DisplayValue> root,
 			CriteriaQuery<?> query, CriteriaBuilder cb) {
-		filterByNumberOfSimCards(root, query, cb);
+		filterByDisplayValue(root, query, cb);
 		if (predicates.isEmpty())
 			return null;
 		Predicate[] arr = new Predicate[predicates.size()];

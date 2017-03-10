@@ -73,8 +73,7 @@ public class MakerController {
 			@PageableDefault Pageable pageable,
 			@ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("maker", makerService.findOne(id));
-		show(model, pageable, filter);
-		return "admin-maker";
+		return show(model, pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")

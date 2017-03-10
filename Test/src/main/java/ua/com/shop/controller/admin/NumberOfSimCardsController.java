@@ -1,5 +1,7 @@
 package ua.com.shop.controller.admin;
 
+import static ua.com.shop.util.ParamBuilder.getParams;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import ua.com.shop.dto.filter.SimpleFilterDecimal;
 import ua.com.shop.dto.form.NumberOfSimCardsForm;
 import ua.com.shop.service.NumberOfSimCardsService;
-import ua.com.shop.util.ParamBuilder;
 import ua.com.shop.validator.NumberOfSimCardsValidator;
 
 @Controller
@@ -76,8 +77,7 @@ public class NumberOfSimCardsController {
 			@ModelAttribute("filter") SimpleFilterDecimal filter) {
 		model.addAttribute("numberofsimcards",
 				numberOfSimCardsService.findForm(id));
-		show(model, pageable, filter);
-		return "admin-numberofsimcards";
+		return show(model, pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
@@ -86,20 +86,6 @@ public class NumberOfSimCardsController {
 			@ModelAttribute("filter") SimpleFilterDecimal filter) {
 		numberOfSimCardsService.delete(id);
 		return "redirect:/admin/numberofsimcards" + getParams(pageable, filter);
-	}
-
-	private String getParams(Pageable pageable, SimpleFilterDecimal filter) {
-		String page = ParamBuilder.getParams(pageable);
-		StringBuilder buffer = new StringBuilder(page);
-		if (!filter.getMin().isEmpty()) {
-			buffer.append("&max=");
-			buffer.append(filter.getMin());
-		}
-		if (!filter.getMax().isEmpty()) {
-			buffer.append("&min=");
-			buffer.append(filter.getMax());
-		}
-		return buffer.toString();
 	}
 
 }
