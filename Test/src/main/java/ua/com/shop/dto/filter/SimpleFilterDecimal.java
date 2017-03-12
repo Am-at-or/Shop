@@ -4,18 +4,10 @@ import java.math.BigDecimal;
 
 public class SimpleFilterDecimal {
 
-	private String max = "";
 	private String min = "";
+	private String max = "";
 	private BigDecimal maxValue;
 	private BigDecimal minValue;
-
-	public String getMax() {
-		return max;
-	}
-
-	public void setMax(String max) {
-		this.max = max;
-	}
 
 	public String getMin() {
 		return min;
@@ -23,6 +15,14 @@ public class SimpleFilterDecimal {
 
 	public void setMin(String min) {
 		this.min = min;
+	}
+
+	public String getMax() {
+		return max;
+	}
+
+	public void setMax(String max) {
+		this.max = max;
 	}
 
 	public BigDecimal getMaxValue() {

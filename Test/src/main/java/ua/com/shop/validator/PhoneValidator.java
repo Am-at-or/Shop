@@ -11,10 +11,9 @@ import ua.com.shop.service.PhoneService;
 
 public class PhoneValidator implements Validator {
 
-	private final static Pattern REG1 = Pattern.compile("([0-9]{1,9})");
-	private final static Pattern REG3 = Pattern.compile("([0-9]{1,2})");
-	private final static Pattern REG5 = Pattern.compile("([0-9]{1,5})");
-	private final static Pattern REG6 = Pattern.compile("([a-zA-Z0-9]{1,20})");
+	private final static Pattern REG1 = Pattern
+			.compile("^([0-9]{1,17}\\.[0-9]{1,2})|([0-9]{1,17}\\,[0-9]{1,2})|([0-9]{1,17})$");
+	private final static Pattern REG2 = Pattern.compile("([0-9]{1,9})");
 
 	private PhoneService phoneService;
 
@@ -34,35 +33,67 @@ public class PhoneValidator implements Validator {
 				"Can't be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "",
 				"Can't be empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "displayValue", "",
+				"Can't be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "primaryCamera", "",
 				"Can't be empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "secondaryCamera",
+				"", "Can't be empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ram", "",
+				"Can't be empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "internal", "",
+				"Can't be empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "card", "",
+				"Can't be empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numberOfSimCards",
+				"", "Can't be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "battery", "",
 				"Can't be empty");
+		if (!REG1.matcher(form.getPrice()).matches()) {
+			errors.rejectValue("price", "", "Error");
+		}
+		if (!REG1.matcher(form.getDisplayValue()).matches()) {
+			errors.rejectValue("displayValue", "", "Error");
+		}
+		if (!REG1.matcher(form.getPrimaryCamera()).matches()) {
+			errors.rejectValue("primaryCamera", "", "Error");
+		}
+		if (!REG1.matcher(form.getSecondaryCamera()).matches()) {
+			errors.rejectValue("secondaryCamera", "", "Error");
+		}
+		if (!REG1.matcher(form.getRam()).matches()) {
+			errors.rejectValue("ram", "", "Error");
+		}
+		if (!REG1.matcher(form.getInternal()).matches()) {
+			errors.rejectValue("internal", "", "Error");
+		}
+		if (!REG1.matcher(form.getCard()).matches()) {
+			errors.rejectValue("card", "", "Error");
+		}
+		if (!REG2.matcher(form.getNumberOfSimCards()).matches()) {
+			errors.rejectValue("numberOfSimCards", "", "Error");
+		}
+		if (!REG2.matcher(form.getBattery()).matches()) {
+			errors.rejectValue("battery", "", "Error");
+		}
 
-		if (!REG6.matcher(form.getModel()).matches()) {
-			errors.rejectValue("model", "", "Enter text [a-zA-Z0-9]{1,20}!");
-		}
-		if (!REG1.matcher(String.valueOf(form.getPrice())).matches()) {
-			errors.rejectValue("price", "", "Enter text [0-9]{1,9}!");
-		}
-		if (!REG3.matcher(String.valueOf(form.getPrimaryCamera())).matches()) {
-			errors.rejectValue("primaryCamera", "", "Enter text [0-9]{1,2}!");
-		}
-		if (!REG5.matcher(String.valueOf(form.getBattery())).matches()) {
-			errors.rejectValue("battery", "", "Enter text [0-9]{1,5}!");
-		}
-
-		if (errors.getFieldError("ifExist") == null
+		if (errors.getFieldError("model") == null
 				&& errors.getFieldError("price") == null
+				&& errors.getFieldError("displayValue") == null
 				&& errors.getFieldError("primaryCamera") == null
+				&& errors.getFieldError("secondaryCamera") == null
+				&& errors.getFieldError("ram") == null
+				&& errors.getFieldError("internal") == null
+				&& errors.getFieldError("card") == null
+				&& errors.getFieldError("numberOfSimCards") == null
 				&& errors.getFieldError("battery") == null) {
 			if (phoneService.findUnique(form.getMaker(), form.getModel(),
-					form.getPrice(), form.getDisplay(),
-					form.getPrimaryCamera(), form.getSecondaryCamera(),
-					form.getProcessor(), form.getRam(), form.getInternal(),
-					form.getCard(), form.getNumberOfSimCards(),
-					form.getOperatingSystem(), form.getBattery(),
-					form.getColor()) != null) {
+					form.getPrice(), form.getDisplayValue(),
+					form.getDisplayResolution(), form.getPrimaryCamera(),
+					form.getSecondaryCamera(), form.getProcessor(),
+					form.getRam(), form.getInternal(), form.getCard(),
+					form.getNumberOfSimCards(), form.getOperatingSystem(),
+					form.getBattery(), form.getColor()) != null) {
 				errors.rejectValue("ifExist", "", "Already exist!");
 			}
 		}

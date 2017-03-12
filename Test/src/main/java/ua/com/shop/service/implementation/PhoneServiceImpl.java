@@ -1,23 +1,24 @@
 package ua.com.shop.service.implementation;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.com.shop.dao.PhoneDao;
+import ua.com.shop.dto.filter.PhoneFilter;
 import ua.com.shop.dto.form.PhoneForm;
-import ua.com.shop.entity.CardMemory;
 import ua.com.shop.entity.Color;
-import ua.com.shop.entity.Display;
-import ua.com.shop.entity.InternalMemory;
+import ua.com.shop.entity.DisplayResolution;
 import ua.com.shop.entity.Maker;
-import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Phone;
 import ua.com.shop.entity.Processor;
-import ua.com.shop.entity.Ram;
 import ua.com.shop.service.PhoneService;
+import ua.com.shop.specification.PhoneSpecification;
 
 @Service
 public class PhoneServiceImpl implements PhoneService {
@@ -31,15 +32,19 @@ public class PhoneServiceImpl implements PhoneService {
 		entity.setId(form.getId());
 		entity.setMaker(form.getMaker());
 		entity.setModel(form.getModel());
-		entity.setPrice(Integer.valueOf(form.getPrice()));
-		entity.setDisplay(form.getDisplay());
-		entity.setPrimaryCamera(Integer.valueOf(form.getPrimaryCamera()));
-		entity.setSecondaryCamera(Integer.valueOf(form.getSecondaryCamera()));
+		entity.setPrice(new BigDecimal(form.getPrice().replace(",", ".")));
+		entity.setDisplayValue(Double.valueOf(form.getDisplayValue().replace(
+				",", ".")));
+		entity.setDisplayResolution(form.getDisplayResolution());
+		entity.setPrimaryCamera(Double.valueOf(form.getPrimaryCamera().replace(
+				",", ".")));
+		entity.setSecondaryCamera(Double.valueOf(form.getSecondaryCamera()
+				.replace(",", ".")));
 		entity.setProcessor(form.getProcessor());
-		entity.setRam(form.getRam());
-		entity.setInternal(form.getInternal());
-		entity.setCard(form.getCard());
-		entity.setNumberOfSimCards(form.getNumberOfSimCards());
+		entity.setRam(Double.valueOf(form.getRam().replace(",", ".")));
+		entity.setInternal(Double.valueOf(form.getInternal().replace(",", ".")));
+		entity.setCard(Double.valueOf(form.getCard().replace(",", ".")));
+		entity.setNumberOfSimCards(Integer.valueOf(form.getNumberOfSimCards()));
 		entity.setOperatingSystem(form.getOperatingSystem());
 		entity.setBattery(Integer.valueOf(form.getBattery()));
 		entity.setColor(form.getColor());
@@ -66,10 +71,6 @@ public class PhoneServiceImpl implements PhoneService {
 		phoneDao.save(phone);
 	}
 
-	public List<Phone> findPhoneByPrice(int min, int max) {
-		return phoneDao.findPhoneByPrice(min, max);
-	}
-
 	@Override
 	public PhoneForm findForm(int id) {
 		PhoneForm form = new PhoneForm();
@@ -78,14 +79,15 @@ public class PhoneServiceImpl implements PhoneService {
 		form.setMaker(entity.getMaker());
 		form.setModel(entity.getModel());
 		form.setPrice(String.valueOf(entity.getPrice()));
-		form.setDisplay(entity.getDisplay());
+		form.setDisplayValue(String.valueOf(entity.getDisplayValue()));
+		form.setDisplayResolution(entity.getDisplayResolution());
 		form.setPrimaryCamera(String.valueOf(entity.getPrimaryCamera()));
 		form.setSecondaryCamera(String.valueOf(entity.getSecondaryCamera()));
 		form.setProcessor(entity.getProcessor());
-		form.setRam(entity.getRam());
-		form.setInternal(entity.getInternal());
-		form.setCard(entity.getCard());
-		form.setNumberOfSimCards(entity.getNumberOfSimCards());
+		form.setRam(String.valueOf(entity.getRam()));
+		form.setInternal(String.valueOf(entity.getInternal()));
+		form.setCard(String.valueOf(entity.getCard()));
+		form.setNumberOfSimCards(String.valueOf(entity.getNumberOfSimCards()));
 		form.setOperatingSystem(entity.getOperatingSystem());
 		form.setBattery(String.valueOf(entity.getBattery()));
 		form.setColor(entity.getColor());
@@ -94,17 +96,26 @@ public class PhoneServiceImpl implements PhoneService {
 
 	@Override
 	public Phone findUnique(Maker maker, String model, String price,
-			Display display, String primaryCamera, String secondaryCamera,
-			Processor processor, Ram ram, InternalMemory internal,
-			CardMemory card, NumberOfSimCards numberOfSimCards,
+			String displayValue, DisplayResolution displayResolution,
+			String primaryCamera, String secondaryCamera, Processor processor,
+			String ram, String internal, String card, String numberOfSimCards,
 			OperatingSystem operatingSystem, String battery, Color color) {
 		return phoneDao.findUnique(maker.getId(), model,
-				Integer.valueOf(price), display.getId(),
-				Integer.valueOf(primaryCamera),
-				Integer.valueOf(secondaryCamera), processor.getId(),
-				ram.getId(), internal.getId(), card.getId(),
-				numberOfSimCards.getId(), operatingSystem.getId(),
+				new BigDecimal(price.replace(",", ".")),
+				Double.valueOf(displayValue.replace(",", ".")),
+				displayResolution.getId(),
+				Double.valueOf(primaryCamera.replace(",", ".")),
+				Double.valueOf(secondaryCamera.replace(",", ".")),
+				processor.getId(), Double.valueOf(ram.replace(",", ".")),
+				Double.valueOf(internal.replace(",", ".")),
+				Double.valueOf(card.replace(",", ".")),
+				Integer.valueOf(numberOfSimCards), operatingSystem.getId(),
 				Integer.valueOf(battery), color.getId());
+	}
+
+	@Override
+	public Page<Phone> findAll(Pageable pageable, PhoneFilter filter) {
+		return phoneDao.findAll(new PhoneSpecification(filter), pageable);
 	}
 
 }

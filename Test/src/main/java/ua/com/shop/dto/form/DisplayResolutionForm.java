@@ -1,9 +1,10 @@
 package ua.com.shop.dto.form;
 
-public class InternalMemoryForm {
+public class DisplayResolutionForm {
 
 	private int id;
-	private String internal;
+	private String width;
+	private String height;
 	private String ifExist;
 
 	public int getId() {
@@ -14,12 +15,20 @@ public class InternalMemoryForm {
 		this.id = id;
 	}
 
-	public String getInternal() {
-		return internal;
+	public String getWidth() {
+		return width;
 	}
 
-	public void setInternal(String internal) {
-		this.internal = internal;
+	public void setWidth(String width) {
+		this.width = width;
+	}
+
+	public String getHeight() {
+		return height;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
 	}
 
 	public String getIfExist() {

@@ -15,11 +15,8 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Display<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="/admin/display">Display</a></li>
+						<li><a href="/admin/displayresolution">Display resolution</a></li>
 						<li><a href="/admin/displayvalue">Display size</a></li>
-						<li><a href="/admin/displaywidth">Display width</a></li>
-						<li><a href="/admin/displayheight">Display height</a></li>
-						<li><a href="/admin/displaytechnology">Display technology</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Processor<b class="caret"></b></a>

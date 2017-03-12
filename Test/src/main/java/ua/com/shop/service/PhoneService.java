@@ -2,21 +2,21 @@ package ua.com.shop.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import ua.com.shop.dto.filter.PhoneFilter;
 import ua.com.shop.dto.form.PhoneForm;
-import ua.com.shop.entity.CardMemory;
 import ua.com.shop.entity.Color;
-import ua.com.shop.entity.Display;
-import ua.com.shop.entity.InternalMemory;
+import ua.com.shop.entity.DisplayResolution;
 import ua.com.shop.entity.Maker;
-import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Phone;
 import ua.com.shop.entity.Processor;
-import ua.com.shop.entity.Ram;
 
 public interface PhoneService {
 
-	void save(PhoneForm phone);
+	void save(PhoneForm form);
 
 	Phone findOne(int id);
 
@@ -28,12 +28,12 @@ public interface PhoneService {
 
 	PhoneForm findForm(int id);
 
-	Phone findUnique(Maker maker, String model, String price, Display display,
+	Phone findUnique(Maker maker, String model, String price,
+			String displayValue, DisplayResolution displayResolution,
 			String primaryCamera, String secondaryCamera, Processor processor,
-			Ram ram, InternalMemory internal, CardMemory card,
-			NumberOfSimCards numberOfSimCards, OperatingSystem operatingSystem,
-			String battery, Color color);
+			String ram, String internal, String card, String numberOfSimCards,
+			OperatingSystem operatingSystem, String battery, Color color);
 
-	List<Phone> findPhoneByPrice(int min, int max);
+	Page<Phone> findAll(Pageable pageable, PhoneFilter filter);
 
 }

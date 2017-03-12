@@ -1,5 +1,6 @@
 package ua.com.shop.entity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,21 +17,18 @@ public class Phone extends AbstractEntity {
 	@ManyToOne
 	private Maker maker;
 	private String model;
-	private int price;
+	private BigDecimal price;
+	private double displayValue;
 	@ManyToOne
-	private Display display;
-	private int primaryCamera;
-	private int secondaryCamera;
+	private DisplayResolution displayResolution;
+	private double primaryCamera;
+	private double secondaryCamera;
 	@ManyToOne
 	private Processor processor;
-	@ManyToOne
-	private Ram ram;
-	@ManyToOne
-	private InternalMemory internal;
-	@ManyToOne
-	private CardMemory card;
-	@ManyToOne
-	private NumberOfSimCards numberOfSimCards;
+	private double ram;
+	private double internal;
+	private double card;
+	private int numberOfSimCards;
 	@ManyToOne
 	private OperatingSystem operatingSystem;
 	private int battery;
@@ -63,35 +61,43 @@ public class Phone extends AbstractEntity {
 		this.model = model;
 	}
 
-	public int getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
-	public Display getDisplay() {
-		return display;
+	public double getDisplayValue() {
+		return displayValue;
 	}
 
-	public void setDisplay(Display display) {
-		this.display = display;
+	public void setDisplayValue(double displayValue) {
+		this.displayValue = displayValue;
 	}
 
-	public int getPrimaryCamera() {
+	public DisplayResolution getDisplayResolution() {
+		return displayResolution;
+	}
+
+	public void setDisplayResolution(DisplayResolution displayResolution) {
+		this.displayResolution = displayResolution;
+	}
+
+	public double getPrimaryCamera() {
 		return primaryCamera;
 	}
 
-	public void setPrimaryCamera(int primaryCamera) {
+	public void setPrimaryCamera(double primaryCamera) {
 		this.primaryCamera = primaryCamera;
 	}
 
-	public int getSecondaryCamera() {
+	public double getSecondaryCamera() {
 		return secondaryCamera;
 	}
 
-	public void setSecondaryCamera(int secondaryCamera) {
+	public void setSecondaryCamera(double secondaryCamera) {
 		this.secondaryCamera = secondaryCamera;
 	}
 
@@ -103,35 +109,35 @@ public class Phone extends AbstractEntity {
 		this.processor = processor;
 	}
 
-	public Ram getRam() {
+	public double getRam() {
 		return ram;
 	}
 
-	public void setRam(Ram ram) {
+	public void setRam(double ram) {
 		this.ram = ram;
 	}
 
-	public InternalMemory getInternal() {
+	public double getInternal() {
 		return internal;
 	}
 
-	public void setInternal(InternalMemory internal) {
+	public void setInternal(double internal) {
 		this.internal = internal;
 	}
 
-	public CardMemory getCard() {
+	public double getCard() {
 		return card;
 	}
 
-	public void setCard(CardMemory card) {
+	public void setCard(double card) {
 		this.card = card;
 	}
 
-	public NumberOfSimCards getNumberOfSimCards() {
+	public int getNumberOfSimCards() {
 		return numberOfSimCards;
 	}
 
-	public void setNumberOfSimCards(NumberOfSimCards numberOfSimCards) {
+	public void setNumberOfSimCards(int numberOfSimCards) {
 		this.numberOfSimCards = numberOfSimCards;
 	}
 

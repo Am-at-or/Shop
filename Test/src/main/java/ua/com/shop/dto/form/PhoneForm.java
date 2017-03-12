@@ -1,14 +1,10 @@
 package ua.com.shop.dto.form;
 
-import ua.com.shop.entity.CardMemory;
 import ua.com.shop.entity.Color;
-import ua.com.shop.entity.Display;
-import ua.com.shop.entity.InternalMemory;
+import ua.com.shop.entity.DisplayResolution;
 import ua.com.shop.entity.Maker;
-import ua.com.shop.entity.NumberOfSimCards;
 import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Processor;
-import ua.com.shop.entity.Ram;
 
 public class PhoneForm {
 
@@ -16,14 +12,15 @@ public class PhoneForm {
 	private Maker maker;
 	private String model;
 	private String price;
-	private Display display;
+	private String displayValue;
+	private DisplayResolution displayResolution;
 	private String primaryCamera;
 	private String secondaryCamera;
 	private Processor processor;
-	private Ram ram;
-	private InternalMemory internal;
-	private CardMemory card;
-	private NumberOfSimCards numberOfSimCards;
+	private String ram;
+	private String internal;
+	private String card;
+	private String numberOfSimCards;
 	private OperatingSystem operatingSystem;
 	private String battery;
 	private Color color;
@@ -61,12 +58,20 @@ public class PhoneForm {
 		this.price = price;
 	}
 
-	public Display getDisplay() {
-		return display;
+	public String getDisplayValue() {
+		return displayValue;
 	}
 
-	public void setDisplay(Display display) {
-		this.display = display;
+	public void setDisplayValue(String displayValue) {
+		this.displayValue = displayValue;
+	}
+
+	public DisplayResolution getDisplayResolution() {
+		return displayResolution;
+	}
+
+	public void setDisplayResolution(DisplayResolution displayResolution) {
+		this.displayResolution = displayResolution;
 	}
 
 	public String getPrimaryCamera() {
@@ -93,35 +98,35 @@ public class PhoneForm {
 		this.processor = processor;
 	}
 
-	public Ram getRam() {
+	public String getRam() {
 		return ram;
 	}
 
-	public void setRam(Ram ram) {
+	public void setRam(String ram) {
 		this.ram = ram;
 	}
 
-	public InternalMemory getInternal() {
+	public String getInternal() {
 		return internal;
 	}
 
-	public void setInternal(InternalMemory internal) {
+	public void setInternal(String internal) {
 		this.internal = internal;
 	}
 
-	public CardMemory getCard() {
+	public String getCard() {
 		return card;
 	}
 
-	public void setCard(CardMemory card) {
+	public void setCard(String card) {
 		this.card = card;
 	}
 
-	public NumberOfSimCards getNumberOfSimCards() {
+	public String getNumberOfSimCards() {
 		return numberOfSimCards;
 	}
 
-	public void setNumberOfSimCards(NumberOfSimCards numberOfSimCards) {
+	public void setNumberOfSimCards(String numberOfSimCards) {
 		this.numberOfSimCards = numberOfSimCards;
 	}
 

@@ -10,9 +10,9 @@
 <script src="/resources/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/css/chosen.min.css">
 <script src="/resources/js/chosen.jquery.min.js"></script>
-<script>
+<script type="text/javascript">
 	$(function() {
-		$('select').chosen();
+		$(".chosen-select").chosen();
 	});
 </script>
 <style type="text/css">
@@ -58,6 +58,18 @@ body {
 
 .nav a {
 	color: #333;
+}
+
+.btn-below {
+	margin-top: 25px;
+}
+
+.input-below {
+	margin-top: 15px;
+}
+
+.pag-below {
+	margin-top: 245px;
 }
 
 @media ( min-width : 1000px) {
