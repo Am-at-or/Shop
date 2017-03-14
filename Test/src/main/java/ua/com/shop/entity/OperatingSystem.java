@@ -12,7 +12,7 @@ public class OperatingSystem extends AbstractEntity {
 
 	@ManyToOne
 	private OSName name;
-	private String version;
+	private double version;
 	@OneToMany(mappedBy = "operatingSystem", fetch = FetchType.LAZY)
 	private List<Phone> phones;
 
@@ -27,11 +27,11 @@ public class OperatingSystem extends AbstractEntity {
 		this.name = name;
 	}
 
-	public String getVersion() {
+	public double getVersion() {
 		return version;
 	}
 
-	public void setVersion(String version) {
+	public void setVersion(double version) {
 		this.version = version;
 	}
 

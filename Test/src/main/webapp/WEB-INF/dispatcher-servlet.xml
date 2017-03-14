@@ -46,6 +46,7 @@
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 	<mvc:resources mapping="/images/**" location="file:${catalina.home}/images/"
 		cache-period="3600" />
 	<mvc:resources mapping="/resources/**" location="/resources/"

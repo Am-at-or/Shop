@@ -12,7 +12,7 @@ import ua.com.shop.service.OperatingSystemService;
 public class OperatingSystemValidator implements Validator {
 
 	private final static Pattern REG = Pattern
-			.compile("([0-9]{1,2}\\.[0-9]{1,2})|([0-9]{1,2}\\,[0-9]{1,2})");
+			.compile("^([0-9]{1,17}\\.[0-9]{1,2})|([0-9]{1,17}\\,[0-9]{1,2})|([0-9]{1,17})$");
 
 	private OperatingSystemService operatingSystemService;
 
@@ -32,8 +32,7 @@ public class OperatingSystemValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "version", "",
 				"Can't be empty");
 		if (!REG.matcher(form.getVersion()).matches()) {
-			errors.rejectValue("version", "",
-					"Error");
+			errors.rejectValue("version", "", "Error");
 		}
 		if (errors.getFieldError("version") == null) {
 			if (operatingSystemService.findUnique(form.getName(),

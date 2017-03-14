@@ -32,18 +32,15 @@ body {
 	padding-top: 10px;
 	margin: 0 auto;
 }
-
 .navbar {
 	margin-bottom: 0;
 }
-
 .edit {
 	margin-bottom: 20px;
 	font-weight: 600;
 	font-family: Verdana;
 	text-align: center;
 }
-
 .form {
 	border-radius: 10px;
 	padding: 30px 40px 60px 40px;
@@ -51,27 +48,21 @@ body {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	margin-bottom: 30px;
 }
-
 .table-striped {
 	margin-top: 20px;
 }
-
 .nav a {
 	color: #333;
 }
-
 .btn-below {
 	margin-top: 25px;
 }
-
 .input-below {
 	margin-top: 15px;
 }
-
 .pag-below {
 	margin-top: 245px;
 }
-
 @media ( min-width : 1000px) {
 	.navbar .navbar-nav {
 		display: inline-block;
@@ -82,7 +73,6 @@ body {
 		text-align: center;
 	}
 }
-
 @media ( max-width :1000px) {
 	.nav>li {
 		float: none;

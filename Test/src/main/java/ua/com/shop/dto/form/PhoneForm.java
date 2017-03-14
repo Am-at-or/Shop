@@ -1,5 +1,7 @@
 package ua.com.shop.dto.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ua.com.shop.entity.Color;
 import ua.com.shop.entity.DisplayResolution;
 import ua.com.shop.entity.Maker;
@@ -8,6 +10,8 @@ import ua.com.shop.entity.Processor;
 
 public class PhoneForm {
 
+	private int version;
+	private transient MultipartFile file;
 	private int id;
 	private Maker maker;
 	private String model;
@@ -25,6 +29,22 @@ public class PhoneForm {
 	private String battery;
 	private Color color;
 	private String ifExist;
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public int getId() {
 		return id;

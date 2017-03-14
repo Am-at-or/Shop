@@ -9,8 +9,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<form:form class="form" action="/admin/displayresolution"
 				method="POST" modelAttribute="displayresolution">
-				<custom:hiddenInputs
-					excludeParams="width, height" />
+				<custom:hiddenInputs excludeParams="width, height" />
 				<div class="form-group">
 					<label for="width" class="control-label">Width</label> <label
 						class="control-label" for="width"
@@ -39,28 +38,28 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-4">
 			<form:form class="form-horizontal" action="/admin/displayresolution"
 				method="GET" modelAttribute="filter">
 				<custom:hiddenInputs
 					excludeParams="minWidth, maxWidth, minHeight, maxHeight" />
-				<div class="form-group col-md-5">
+				<div class="form-group col-md-4">
+					<label for="minWidth" class="control-label">Width</label>
 					<form:input path="minWidth" class="form-control" placeholder="Min" />
-				</div>
-				<div class="form-group col-md-5">
 					<form:input path="maxWidth" class="form-control" placeholder="Max" />
 				</div>
-				<div class="form-group col-md-5">
+				<div class="form-group col-md-4">
+					<label for="minHeight" class="control-label">Height</label>
 					<form:input path="minHeight" class="form-control" placeholder="Min" />
-				</div>
-				<div class="form-group col-md-5">
 					<form:input path="maxHeight" class="form-control" placeholder="Max" />
 				</div>
-				<button type="submit" class="btn btn-primary">Ok</button>
+				<div class="col-md-2 text-right below60">
+					<button type="submit" class="btn btn-primary">Ok</button>
+				</div>
 			</form:form>
 		</div>
-		<div class="col-md-4">
-			<div class="col-md-3 text-left">
+		<div class="col-md-8">
+			<div class="col-md-1 text-left below60">
 				<div class="dropdown">
 					<button class="btn btn-primary dropdown-toggle" type="button"
 						data-toggle="dropdown">
@@ -70,12 +69,11 @@
 						<custom:sort innerHtml="Width asc" paramValue="width" />
 						<custom:sort innerHtml="Width desc" paramValue="width,desc" />
 						<custom:sort innerHtml="Height asc" paramValue="height" />
-						<custom:sort innerHtml="Height desc"
-							paramValue="height,desc" />
+						<custom:sort innerHtml="Height desc" paramValue="height,desc" />
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-3 text-right">
+			<div class="col-md-2 text-right below60">
 				<custom:size posibleSizes="1,2,5,10" size="${page.size}" />
 			</div>
 		</div>

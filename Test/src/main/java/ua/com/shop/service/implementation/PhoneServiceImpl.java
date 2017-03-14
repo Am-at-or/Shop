@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import ua.com.shop.dao.PhoneDao;
 import ua.com.shop.dto.filter.PhoneFilter;
@@ -17,6 +18,7 @@ import ua.com.shop.entity.Maker;
 import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Phone;
 import ua.com.shop.entity.Processor;
+import ua.com.shop.service.FileWriter;
 import ua.com.shop.service.PhoneService;
 import ua.com.shop.specification.PhoneSpecification;
 
@@ -26,10 +28,15 @@ public class PhoneServiceImpl implements PhoneService {
 	@Autowired
 	private PhoneDao phoneDao;
 
+	@Autowired
+	private FileWriter fileWriter;
+
 	@Override
 	public void save(PhoneForm form) {
 		Phone entity = new Phone();
 		entity.setId(form.getId());
+		entity.setVersion(form.getVersion());
+		entity.setFile(form.getFile());
 		entity.setMaker(form.getMaker());
 		entity.setModel(form.getModel());
 		entity.setPrice(new BigDecimal(form.getPrice().replace(",", ".")));
@@ -48,7 +55,12 @@ public class PhoneServiceImpl implements PhoneService {
 		entity.setOperatingSystem(form.getOperatingSystem());
 		entity.setBattery(Integer.valueOf(form.getBattery()));
 		entity.setColor(form.getColor());
-		phoneDao.save(entity);
+		MultipartFile file = entity.getFile();
+		entity = phoneDao.saveAndFlush(entity);
+		if (fileWriter.write(FileWriter.Folder.PHONE, file, entity.getId())) {
+			entity.setVersion((entity.getVersion() + 1));
+			phoneDao.save(entity);
+		}
 	}
 
 	@Override
@@ -76,6 +88,8 @@ public class PhoneServiceImpl implements PhoneService {
 		PhoneForm form = new PhoneForm();
 		Phone entity = phoneDao.findOne(id);
 		form.setId(entity.getId());
+		form.setVersion(entity.getVersion());
+		form.setFile(entity.getFile());
 		form.setMaker(entity.getMaker());
 		form.setModel(entity.getModel());
 		form.setPrice(String.valueOf(entity.getPrice()));

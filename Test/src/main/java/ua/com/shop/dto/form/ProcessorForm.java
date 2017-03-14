@@ -1,6 +1,5 @@
 package ua.com.shop.dto.form;
 
-import ua.com.shop.entity.NumberOfCores;
 import ua.com.shop.entity.ProcessorMaker;
 
 public class ProcessorForm {
@@ -9,7 +8,7 @@ public class ProcessorForm {
 	private ProcessorMaker maker;
 	private String model;
 	private String frequency;
-	private NumberOfCores numberOfCores;
+	private String numberOfCores;
 	private String ifExist;
 
 	public int getId() {
@@ -44,11 +43,11 @@ public class ProcessorForm {
 		this.frequency = frequency;
 	}
 
-	public NumberOfCores getNumberOfCores() {
+	public String getNumberOfCores() {
 		return numberOfCores;
 	}
 
-	public void setNumberOfCores(NumberOfCores numberOfCores) {
+	public void setNumberOfCores(String numberOfCores) {
 		this.numberOfCores = numberOfCores;
 	}
 

@@ -3,14 +3,17 @@ package ua.com.shop.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.com.shop.dao.ProcessorDao;
+import ua.com.shop.dto.filter.ProcessorFilter;
 import ua.com.shop.dto.form.ProcessorForm;
-import ua.com.shop.entity.NumberOfCores;
 import ua.com.shop.entity.Processor;
 import ua.com.shop.entity.ProcessorMaker;
 import ua.com.shop.service.ProcessorService;
+import ua.com.shop.specification.ProcessorSpecification;
 
 @Service
 public class ProcessorServiceImpl implements ProcessorService {
@@ -40,10 +43,10 @@ public class ProcessorServiceImpl implements ProcessorService {
 
 	@Override
 	public Processor findUnique(ProcessorMaker processorMakerId, String model,
-			String frequency, NumberOfCores numberOfCoresId) {
+			String frequency, String numberOfCoresId) {
 		return processorDao.findUnique(processorMakerId.getId(), model,
 				Double.valueOf(frequency.replace(",", ".")),
-				numberOfCoresId.getId());
+				Integer.valueOf(numberOfCoresId));
 	}
 
 	@Override
@@ -54,7 +57,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		form.setMaker(entity.getMaker());
 		form.setModel(entity.getModel());
 		form.setFrequency(String.valueOf(entity.getFrequency()));
-		form.setNumberOfCores(entity.getNumberOfCores());
+		form.setNumberOfCores(String.valueOf(entity.getNumberOfCores()));
 		return form;
 	}
 
@@ -66,8 +69,14 @@ public class ProcessorServiceImpl implements ProcessorService {
 		entity.setModel(form.getModel());
 		entity.setFrequency(Double.valueOf(form.getFrequency()
 				.replace(",", ".")));
-		entity.setNumberOfCores(form.getNumberOfCores());
+		entity.setNumberOfCores(Integer.valueOf(form.getNumberOfCores()));
 		processorDao.save(entity);
+	}
+
+	@Override
+	public Page<Processor> findAll(Pageable pageable, ProcessorFilter filter) {
+		return processorDao.findAll(new ProcessorSpecification(filter),
+				pageable);
 	}
 
 }

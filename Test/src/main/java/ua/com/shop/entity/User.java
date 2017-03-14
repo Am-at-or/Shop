@@ -1,49 +1,34 @@
 package ua.com.shop.entity;
 
-import java.util.Date;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class User extends AbstractEntity {
+@Table(name = "_user")
+public class User extends AbstractEntity implements UserDetails {
 
-	private String login;
-	private String password;
+	private static final long serialVersionUID = 1121011683522003604L;
+
 	private String email;
-	private int phoneNumber;
-	private String firstName;
-	private String lastName;
-	private Date registrationDate;
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Rating> ratings;
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Comment> comments;
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Orders> orders;
 
-	public User() {
+	private String password;
+
+	private Role role;
+
+	public String getEmail() {
+		return email;
 	}
 
-	public User(String login, String password, String email, int phoneNumber,
-			String firstName, String lastName) {
-		this.login = login;
-		this.password = password;
+	public void setEmail(String email) {
 		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.registrationDate = new Date();
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getPassword() {
@@ -54,67 +39,43 @@ public class User extends AbstractEntity {
 		this.password = password;
 	}
 
-	public String getEmail() {
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return new ArrayList<>(Arrays.asList(new SimpleGrantedAuthority(role
+				.name())));
+	}
+
+	@Override
+	public String getUsername() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
 	}
 
-	public int getPhoneNumber() {
-		return phoneNumber;
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Date getRegistrationDate() {
-		return registrationDate;
-	}
-
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}
-
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
-
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public List<Orders> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Orders> orders) {
-		this.orders = orders;
-	}
+	
 }
