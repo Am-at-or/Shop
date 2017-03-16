@@ -4,40 +4,14 @@
 	<div class="row">
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Phone<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="/admin/phone">Phone</a></li>
-						<li><a href="/admin/maker">Maker</a></li>
-						<li><a href="/admin/numberofsimcards">SIM</a></li>
-						<li><a href="/admin/color">Color</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Display<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="/admin/displayresolution">Display resolution</a></li>
-						<li><a href="/admin/displayvalue">Display size</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Processor<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="/admin/processor">Processor</a></li>
-						<li><a href="/admin/processormaker">Maker</a></li>
-						<li><a href="/admin/numberofcores">Cores</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Memory<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="/admin/ram">Ram</a></li>
-						<li><a href="/admin/internalmemory">Internal</a></li>
-						<li><a href="/admin/cardmemory">Card</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Operating System<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="/admin/operatingsystem">Operating system</a></li>
-						<li><a href="/admin/osname">Name OS</a></li>
-					</ul></li>
+				<li><a href="/admin/phone">Phone</a></li>
+				<li><a href="/admin/maker">Maker</a></li>
+				<li><a href="/admin/color">Color</a></li>
+				<li><a href="/admin/displayresolution">Resolution</a></li>
+				<li><a href="/admin/processor">CPU</a></li>
+				<li><a href="/admin/processormaker">CPU maker</a></li>
+				<li><a href="/admin/operatingsystem">OS</a></li>
+				<li><a href="/admin/osname">OS name</a></li>
 				<li><a href="/admin/user">User</a></li>
 				<li><a href="/admin/comment">Comment</a></li>
 				<li><a href="/admin/order">Order</a></li>

@@ -5,11 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import ua.com.shop.entity.Orders;
 import ua.com.shop.service.OrdersService;
 
 @Controller
@@ -23,13 +20,6 @@ public class OrdersController {
 	public String show(Model model) {
 		model.addAttribute("orders", ordersService.findAll());
 		return "admin-order";
-	}
-
-	@PostMapping
-	public String save(@RequestParam String address) {
-		Orders order = new Orders(address);
-		ordersService.save(order);
-		return "redirect:/admin/order";
 	}
 
 	@GetMapping("/delete/{id}")

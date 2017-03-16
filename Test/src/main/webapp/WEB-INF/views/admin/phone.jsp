@@ -215,7 +215,7 @@
 			<custom:hiddenInputs
 				excludeParams="_makerIds, makerIds, modelFilter, minPrice, maxPrice, minDisplayValue, maxDisplayValue, _displayResolutionIds, displayResolutionIds, minPrimaryCamera, maxPrimaryCamera, minSecondaryCamera, maxSecondaryCamera, _processorIds, processorIds, minRam, maxRam, minInternal, maxInternal, minCard, maxCard, numberOfSimCardsFilter, _operatingSystemIds, operatingSystemIds, minBattery, maxBattery, _colorIds, colorIds" />
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-2 col-md-offset-1">
 					<div class="form-group">
 						<label for="maker" class="control-label">Maker</label>
 						<form:select class="form-control chosen-select" path="makerIds"

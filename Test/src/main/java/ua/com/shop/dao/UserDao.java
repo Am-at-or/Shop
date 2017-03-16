@@ -6,4 +6,6 @@ import ua.com.shop.entity.User;
 
 public interface UserDao extends JpaRepository<User, Integer> {
 
+	User findByEmail(String username);
+
 }

@@ -1,6 +1,5 @@
 package ua.com.shop.entity;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,18 +13,11 @@ public class Orders extends AbstractEntity {
 
 	@ManyToOne
 	private User user;
-	private String address;
-	private Date date;
 	@ManyToMany
 	@JoinTable(name = "phone_orders", joinColumns = @JoinColumn(name = "id_orders"), inverseJoinColumns = @JoinColumn(name = "id_phone"))
 	private List<Phone> phones;
 
 	public Orders() {
-	}
-
-	public Orders(String address) {
-		this.address = address;
-		this.date = new Date();
 	}
 
 	public User getUser() {
@@ -36,27 +28,11 @@ public class Orders extends AbstractEntity {
 		this.user = user;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	public List<Phone> getPhones() {
 		return phones;
 	}
 
-	public void setPhone(List<Phone> phones) {
+	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
 	}
 

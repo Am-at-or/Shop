@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -39,6 +41,8 @@ public class User extends AbstractEntity implements UserDetails {
 		this.password = password;
 	}
 
+	@Enumerated
+	@Column(name="_role")
 	public Role getRole() {
 		return role;
 	}
