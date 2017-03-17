@@ -3,12 +3,15 @@ package ua.com.shop.controller.user;
 import java.security.Principal;
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -43,6 +46,7 @@ import ua.com.shop.service.ProcessorService;
 import ua.com.shop.service.UserService;
 import ua.com.shop.util.ParamBuilder;
 import ua.com.shop.validator.PhoneValidator;
+import ua.com.shop.validator.UserValidator;
 
 @Controller
 @SessionAttributes({ "phone", "order" })
@@ -80,6 +84,11 @@ public class IndexController {
 				new OperatingSystemEditor(operatingSystemService));
 		binder.registerCustomEditor(Color.class, new ColorEditor(colorService));
 		binder.setValidator(new PhoneValidator(phoneService));
+	}
+
+	@InitBinder("user")
+	protected void bind1(WebDataBinder binder) {
+		binder.setValidator(new UserValidator(userService));
 	}
 
 	@InitBinder("order")
@@ -294,7 +303,10 @@ public class IndexController {
 	}
 
 	@PostMapping("/registration")
-	public String save(@ModelAttribute("user") User user) {
+	public String save(@ModelAttribute("user") @Valid User user,
+			BindingResult br) {
+		if (br.hasErrors())
+			return "user-registration";
 		userService.save(user);
 		return "redirect:/login";
 	}

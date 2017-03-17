@@ -22,14 +22,24 @@
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
 							<li><a href="/admin">Admin panel</a></li>
 						</sec:authorize>
-						<form:form style="display:inline-block;margin-top:8px;" action="/logout" method="POST">
+						<form:form style="display:inline-block;margin-top:8px;"
+							action="/logout" method="POST">
 							<button type="submit" class="btn btn-danger">Logout</button>
-							<li><a href="/shoppingcart">Shopping Cart</a></li>
 						</form:form>
 					</sec:authorize>
 					<sec:authorize access="!isAuthenticated()">
-						<li><a href="/login">Login</a></li>
 						<li><a href="/registration">Registration</a></li>
+						<form:form style="display:inline-block;margin-top:8px;" class="form-inline" action="/login"
+								method="POST">
+								<input class="form-control" name="login" id="login" placeholder="Login"
+									style="width: 100px;">
+								<input class="form-control" name="password" id="password" placeholder="Password"
+									style="width: 100px;">
+									<label style="color:white;"> <input name="remember-me" type="checkbox">
+										Rem
+									</label>
+								<button type="submit" class="btn btn-success">Sign in</button>
+							</form:form>
 					</sec:authorize>
 				</ul>
 			</div>
