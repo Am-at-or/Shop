@@ -316,4 +316,8 @@ public class IndexController {
 		return "user-login";
 	}
 
+	@RequestMapping(value = "/human")
+	public String people() {
+		return "user-people";
+	}
 }
