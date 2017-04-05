@@ -19,7 +19,9 @@
 				</div>
 				<div class="form-group" style="margin-top: 45px">
 					<div class="col-md-4 col-md-offset-4">
-						<button type="submit" class="btn btn-success btn-block">Create</button>
+						<button type="submit" class="btn btn-success">Create</button>
+						<a href="/admin/color/cancel<custom:allParams/>"><button type="button"
+								class="btn btn-danger">Cancel</button></a>
 					</div>
 				</div>
 			</form:form>

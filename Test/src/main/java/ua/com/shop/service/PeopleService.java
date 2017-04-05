@@ -8,7 +8,7 @@ public interface PeopleService {
 	
 	List<People> findAll();
 	People save (People people);
-	void delete(Integer id);
-	People findOne(Integer id);
+	void delete(int id);
+	People findOne(int id);
 
 }

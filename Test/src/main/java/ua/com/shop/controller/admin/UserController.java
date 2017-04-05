@@ -66,12 +66,26 @@ public class UserController {
 		return "redirect:/admin/user" + getParams(pageable, filter);
 	}
 
+	@GetMapping("/cancel")
+	public String cancel(@ModelAttribute("user") User user,
+			SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") UserFilter filter) {
+		status.setComplete();
+		return "redirect:/admin/user" + getParams(pageable, filter);
+	}
+
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable int id, Model model,
+	public String update(@PathVariable int id,
+			@ModelAttribute("user") @Valid User user, BindingResult br,
+			Model model, SessionStatus status,
 			@PageableDefault Pageable pageable,
 			@ModelAttribute("filter") UserFilter filter) {
 		model.addAttribute("user", userService.findOne(id));
-		return show(model, pageable, filter);
+		if (br.hasErrors())
+			return show(model, pageable, filter);
+		userService.save(user);
+		status.setComplete();
+		return "redirect:/admin/user" + getParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")

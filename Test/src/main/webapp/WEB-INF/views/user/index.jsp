@@ -5,12 +5,14 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="/WEB-INF/custom.tld" prefix="custom"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <div class="row">
 	<div class="col-md-2">
 		<form:form class="form-horizontal" action="/" method="GET"
 			modelAttribute="filter">
 			<custom:hiddenInputs
-				excludeParams="_makerIds, makerIds, modelFilter, minPrice, maxPrice, minDisplayValue, maxDisplayValue, _displayResolutionIds, displayResolutionIds, minPrimaryCamera, maxPrimaryCamera, minSecondaryCamera, maxSecondaryCamera, _processorIds, processorIds, minRam, maxRam, minInternal, maxInternal, minCard, maxCard, numberOfSimCardsFilter, _operatingSystemIds, operatingSystemIds, minBattery, maxBattery, _colorIds, colorIds" />
+				excludeParams="_makerIds, makerIds, modelFilter, minPrice, maxPrice, minDisplayValue, maxDisplayValue, _displayResolutionIds, displayResolutionIds, minPrimaryCamera, maxPrimaryCamera, _processorIds, processorIds, minRam, maxRam, minInternal, maxInternal, numberOfSimCardsFilter, _operatingSystemIds, operatingSystemIds, _colorIds, colorIds" />
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
@@ -25,7 +27,7 @@
 				</div>
 				<div class="col-md-12">
 					<div class="form-group">
-						<label for="displayResolution" class="control-label">D.
+						<label for="displayResolution" class="control-label">Disp.
 							resolution</label>
 						<form:select class="form-control chosen-select"
 							path="displayResolutionIds" id="displayResolution">
@@ -103,22 +105,11 @@
 					</div>
 				</div>
 				<div class="col-md-12">
-					<label for="minPrimaryCamera" class="control-label row">Primary
-						camera</label>
+					<label for="minPrimaryCamera" class="control-label row">Camera</label>
 					<div class="form-group">
 						<form:input path="minPrimaryCamera" class="form-control min-max"
 							placeholder="Min" />
 						<form:input path="maxPrimaryCamera" class="form-control min-max"
-							placeholder="Max" />
-					</div>
-				</div>
-				<div class="col-md-12">
-					<label for="minSecondaryCamera" class="control-label row">Secondary
-						camera</label>
-					<div class="form-group">
-						<form:input path="minSecondaryCamera" class="form-control min-max"
-							placeholder="Min" />
-						<form:input path="maxSecondaryCamera" class="form-control min-max"
 							placeholder="Max" />
 					</div>
 				</div>
@@ -140,24 +131,6 @@
 							placeholder="Max" />
 					</div>
 				</div>
-				<div class="col-md-12">
-					<label for="minCard" class="control-label row">Card</label>
-					<div class="form-group">
-						<form:input path="minCard" class="form-control min-max"
-							placeholder="Min" />
-						<form:input path="maxCard" class="form-control min-max"
-							placeholder="Max" />
-					</div>
-				</div>
-				<div class="col-md-12">
-					<label for="minBattery" class="control-label row">Battery</label>
-					<div class="form-group">
-						<form:input path="minBattery" class="form-control min-max"
-							placeholder="Min" />
-						<form:input path="maxBattery" class="form-control min-max"
-							placeholder="Max" />
-					</div>
-				</div>
 				<div class="col-md-12 text-left">
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary" style="width: 63px">Ok</button>
@@ -167,20 +140,9 @@
 		</form:form>
 	</div>
 	<div class="col-md-10">
-		<div class="col-md-12 row">
-			<ul>
-				<c:forEach items="${ord.phones}" var="phone">
-					<li class="product text-center"><a><img class="photo"
-							src="/images/phone/${phone.id}.jpg?version=${phone.version}"><br>
-							${phone.maker.name} ${phone.model} ${phone.internal}GB
-							${phone.color.color}</a>
-						<p class="price">$${phone.price}</p>
-				</c:forEach>
-			</ul>
-		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<h2>Mobile Phones</h2>
+				<h2 style="margin: 30px 0 0 22px;">Mobile Phones</h2>
 			</div>
 			<div class="col-md-6">
 				<div class="col-md-2 col-md-offset-8 text-left">
@@ -190,72 +152,34 @@
 							Sort <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu">
-							<custom:sort innerHtml="Maker asc" paramValue="maker" />
-							<custom:sort innerHtml="Maker desc" paramValue="maker,desc" />
-							<custom:sort innerHtml="Model asc" paramValue="model" />
-							<custom:sort innerHtml="Model desc" paramValue="model,desc" />
+							<custom:sort innerHtml="Maker asc" paramValue="maker.name" />
+							<custom:sort innerHtml="Maker desc" paramValue="maker.name,desc" />
 							<custom:sort innerHtml="Price asc" paramValue="price" />
 							<custom:sort innerHtml="Price desc" paramValue="price,desc" />
-							<custom:sort innerHtml="Display size asc"
-								paramValue="displayValue" />
-							<custom:sort innerHtml="Display size desc"
-								paramValue="displayValue,desc" />
-							<custom:sort innerHtml="Display resolution asc"
-								paramValue="displayResolution" />
-							<custom:sort innerHtml="Display resolution desc"
-								paramValue="displayResolution,desc" />
-							<custom:sort innerHtml="Processor asc" paramValue="processor" />
-							<custom:sort innerHtml="Processor desc"
-								paramValue="processor,desc" />
-							<custom:sort innerHtml="Primary camera asc"
-								paramValue="primaryCamera" />
-							<custom:sort innerHtml="Primary camera desc"
-								paramValue="primaryCamera,desc" />
-							<custom:sort innerHtml="Secondary camera asc"
-								paramValue="secondaryCamera" />
-							<custom:sort innerHtml="Secondary camera desc"
-								paramValue="secondaryCamera,desc" />
-							<custom:sort innerHtml="Battery asc" paramValue="battery" />
-							<custom:sort innerHtml="Battery desc" paramValue="battery,desc" />
-							<custom:sort innerHtml="RAM asc" paramValue="ram" />
-							<custom:sort innerHtml="RAM desc" paramValue="ram,desc" />
-							<custom:sort innerHtml="Internal memory asc"
-								paramValue="internal" />
-							<custom:sort innerHtml="Internal memory desc"
-								paramValue="internal,desc" />
-							<custom:sort innerHtml="Card memory asc" paramValue="card" />
-							<custom:sort innerHtml="Card memory desc" paramValue="card,desc" />
-							<custom:sort innerHtml="Operating system asc"
-								paramValue="operatingSystem" />
-							<custom:sort innerHtml="Operating system desc"
-								paramValue="operatingSystem,desc" />
-							<custom:sort innerHtml="SIM asc" paramValue="numberOfSimCards" />
-							<custom:sort innerHtml="SIM desc"
-								paramValue="numberOfSimCards,desc" />
-							<custom:sort innerHtml="Color asc" paramValue="color" />
-							<custom:sort innerHtml="Color desc" paramValue="color,desc" />
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-2 text-right btn-below">
-					<custom:size posibleSizes="1,2,5,10" size="${page.size}" />
+					<custom:size posibleSizes="4,8,16" size="${page.size}" />
 				</div>
 			</div>
-			<div class="col-md-12 row">
-				<ul>
-					<c:forEach items="${page.content}" var="phone">
-						<li class="product text-center"><a><img class="photo"
-								src="/images/phone/${phone.id}.jpg?version=${phone.version}"><br>
-								${phone.maker.name} ${phone.model} ${phone.internal}GB
-								${phone.color.color}</a>
-							<p class="price">$${phone.price}</p> <form:form
-								style="display:inline-block;margin-top:8px;"
-								action="/addtopackage/${phone.id}" method="POST">
+		</div>
+		<div class="row">
+			<ul>
+				<c:forEach items="${page.content}" var="phone">
+					<li class="product text-center"><a href="/phone/${phone.id}"><img class="photo"
+							src="/images/phone/${phone.id}.jpg?version=${phone.version}"><br>
+							${phone.maker.name} ${phone.model} ${phone.internal}GB
+							${phone.color.color}</a>
+						<p class="price">$${phone.price}</p> <sec:authorize
+							access="isAuthenticated()">
+							<form:form style="display:inline-block;margin-top:8px;"
+								action="/addtocart/${phone.id}" method="POST">
 								<button type="submit" class="btn btn-success">Add</button>
-							</form:form></li>
-					</c:forEach>
-				</ul>
-			</div>
+							</form:form>
+						</sec:authorize></li>
+				</c:forEach>
+			</ul>
 		</div>
 		<div class="row">
 			<div class="col-md-12 text-center">

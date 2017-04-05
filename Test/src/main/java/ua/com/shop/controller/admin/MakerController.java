@@ -68,6 +68,14 @@ public class MakerController {
 		return "redirect:/admin/maker" + getParams(pageable, filter);
 	}
 
+	@GetMapping("/cancel")
+	public String cancel(@ModelAttribute("maker") Maker maker,
+			SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") SimpleFilter filter) {
+		status.setComplete();
+		return "redirect:/admin/maker" + getParams(pageable, filter);
+	}
+
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model,
 			@PageableDefault Pageable pageable,

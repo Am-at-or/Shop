@@ -132,4 +132,9 @@ public class PhoneServiceImpl implements PhoneService {
 		return phoneDao.findAll(new PhoneSpecification(filter), pageable);
 	}
 
+	@Override
+	public List<Phone> findByMaker(String name) {
+		return phoneDao.findByMaker(name);
+	}
+
 }

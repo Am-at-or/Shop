@@ -22,7 +22,7 @@ import ua.com.shop.dto.filter.DisplayResolutionFilter;
 import ua.com.shop.dto.form.DisplayResolutionForm;
 import ua.com.shop.service.DisplayResolutionService;
 import ua.com.shop.util.ParamBuilder;
-import ua.com.shop.validator.DisplayValidator;
+import ua.com.shop.validator.DisplayResolutionValidator;
 
 @Controller
 @RequestMapping("/admin/displayresolution")
@@ -34,7 +34,7 @@ public class DisplayResolutionController {
 
 	@InitBinder("displayresolution")
 	protected void bind(WebDataBinder binder) {
-		binder.setValidator(new DisplayValidator(displayService));
+		binder.setValidator(new DisplayResolutionValidator(displayService));
 	}
 
 	@ModelAttribute("filter")
@@ -65,7 +65,18 @@ public class DisplayResolutionController {
 		}
 		displayService.save(displayForm);
 		status.setComplete();
-		return "redirect:/admin/displayresolution" + getParams(pageable, filter);
+		return "redirect:/admin/displayresolution"
+				+ getParams(pageable, filter);
+	}
+
+	@GetMapping("/cancel")
+	public String cancel(
+			@ModelAttribute("displayresolution") DisplayResolutionForm displayForm,
+			SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") DisplayResolutionFilter filter) {
+		status.setComplete();
+		return "redirect:/admin/displayresolution"
+				+ getParams(pageable, filter);
 	}
 
 	@GetMapping("/update/{id}")
@@ -81,26 +92,27 @@ public class DisplayResolutionController {
 			@PageableDefault Pageable pageable,
 			@ModelAttribute("filter") DisplayResolutionFilter filter) {
 		displayService.delete(id);
-		return "redirect:/admin/displayresolution" + getParams(pageable, filter);
+		return "redirect:/admin/displayresolution"
+				+ getParams(pageable, filter);
 	}
 
 	private String getParams(Pageable pageable, DisplayResolutionFilter filter) {
 		String page = ParamBuilder.getParams(pageable);
 		StringBuilder buffer = new StringBuilder(page);
 		if (!filter.getMinWidth().isEmpty()) {
-			buffer.append("&minwidth=");
+			buffer.append("&minWidth=");
 			buffer.append(filter.getMinWidth());
 		}
 		if (!filter.getMaxWidth().isEmpty()) {
-			buffer.append("&maxwidth=");
+			buffer.append("&maxWidth=");
 			buffer.append(filter.getMaxWidth());
 		}
 		if (!filter.getMinHeight().isEmpty()) {
-			buffer.append("&minheight=");
+			buffer.append("&minHeight=");
 			buffer.append(filter.getMinHeight());
 		}
 		if (!filter.getMaxHeight().isEmpty()) {
-			buffer.append("&maxheight=");
+			buffer.append("&maxHeight=");
 			buffer.append(filter.getMaxHeight());
 		}
 		return buffer.toString();

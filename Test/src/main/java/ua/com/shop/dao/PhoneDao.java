@@ -23,4 +23,7 @@ public interface PhoneDao extends JpaRepository<Phone, Integer>,
 			double internal, double card, int numberOfSimCards,
 			int operatingSystemId, int battery, int colorId);
 
+	@Query("select p from Phone p where p.maker.name = ?1")
+	List<Phone> findByMaker(String name);
+	
 }

@@ -57,7 +57,9 @@
 				</div>
 				<div class="form-group">
 					<div class=" col-md-4 col-md-offset-4">
-						<button type="submit" class="btn btn-success btn-block">Create</button>
+						<button type="submit" class="btn btn-success">Create</button>
+						<a href="/admin/processor/cancel<custom:allParams/>"><button type="button"
+								class="btn btn-danger">Cancel</button></a>
 					</div>
 				</div>
 			</form:form>
@@ -70,12 +72,12 @@
 				<custom:hiddenInputs
 					excludeParams="_makerIds, makerIds, modelFilter, minFrequency, maxFrequency, numberOfCoresFilter" />
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-md-3">
+						<label for="minFrequency" class="control-label row">Frequency</label>
 						<div class="form-group">
-							<label for="minFrequency" class="control-label">Frequency</label>
-							<form:input path="minFrequency" class="form-control"
+							<form:input path="minFrequency" class="form-control min-max"
 								placeholder="Min" />
-							<form:input path="maxFrequency" class="form-control"
+							<form:input path="maxFrequency" class="form-control min-max"
 								placeholder="Max" />
 						</div>
 					</div>
@@ -116,7 +118,7 @@
 			</form:form>
 		</div>
 		<div class="col-md-2">
-			<div class="col-md-6 text-left">
+			<div class="col-md-6 text-left btn-below">
 				<div class="dropdown">
 					<button class="btn btn-primary dropdown-toggle" type="button"
 						data-toggle="dropdown">
@@ -136,7 +138,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-6 text-right">
+			<div class="col-md-6 text-right btn-below">
 				<custom:size posibleSizes="1,2,5,10" size="${page.size}" />
 			</div>
 		</div>

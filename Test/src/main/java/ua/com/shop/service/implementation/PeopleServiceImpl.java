@@ -26,13 +26,13 @@ public class PeopleServiceImpl implements PeopleService {
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void delete(int id) {
 		peopleDao.delete(id);
 
 	}
 
 	@Override
-	public People findOne(Integer id) {
+	public People findOne(int id) {
 		return peopleDao.findOne(id);
 	}
 

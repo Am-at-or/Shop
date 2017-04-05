@@ -25,7 +25,7 @@
 <h3>Available orders:</h3>
 <ul>
 	<c:forEach items="${orders}" var="order">
-		<li>Address: ${order.address}, status: ${order.status}<a
+		<li>${order.user.login}<a
 			href="/admin/order/delete/${order.id}"> Delete</a>
 		</li>
 	</c:forEach>

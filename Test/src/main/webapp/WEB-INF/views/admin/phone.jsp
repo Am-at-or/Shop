@@ -202,7 +202,9 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-4 col-md-offset-4">
-					<button type="submit" class="btn btn-success btn-block">Create</button>
+					<button type="submit" class="btn btn-success">Create</button>
+					<a href="/admin/phone/cancel<custom:allParams/>"><button type="button"
+								class="btn btn-danger">Cancel</button></a>
 				</div>
 			</div>
 		</form:form>
@@ -363,8 +365,8 @@
 								Sort <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<custom:sort innerHtml="Maker asc" paramValue="maker" />
-								<custom:sort innerHtml="Maker desc" paramValue="maker,desc" />
+								<custom:sort innerHtml="Maker asc" paramValue="maker.name" />
+								<custom:sort innerHtml="Maker desc" paramValue="maker.name,desc" />
 								<custom:sort innerHtml="Model asc" paramValue="model" />
 								<custom:sort innerHtml="Model desc" paramValue="model,desc" />
 								<custom:sort innerHtml="Price asc" paramValue="price" />
@@ -373,13 +375,6 @@
 									paramValue="displayValue" />
 								<custom:sort innerHtml="Display size desc"
 									paramValue="displayValue,desc" />
-								<custom:sort innerHtml="Display resolution asc"
-									paramValue="displayResolution" />
-								<custom:sort innerHtml="Display resolution desc"
-									paramValue="displayResolution,desc" />
-								<custom:sort innerHtml="Processor asc" paramValue="processor" />
-								<custom:sort innerHtml="Processor desc"
-									paramValue="processor,desc" />
 								<custom:sort innerHtml="Primary camera asc"
 									paramValue="primaryCamera" />
 								<custom:sort innerHtml="Primary camera desc"
@@ -398,15 +393,11 @@
 									paramValue="internal,desc" />
 								<custom:sort innerHtml="Card memory asc" paramValue="card" />
 								<custom:sort innerHtml="Card memory desc" paramValue="card,desc" />
-								<custom:sort innerHtml="Operating system asc"
-									paramValue="operatingSystem" />
-								<custom:sort innerHtml="Operating system desc"
-									paramValue="operatingSystem,desc" />
 								<custom:sort innerHtml="SIM asc" paramValue="numberOfSimCards" />
 								<custom:sort innerHtml="SIM desc"
 									paramValue="numberOfSimCards,desc" />
-								<custom:sort innerHtml="Color asc" paramValue="color" />
-								<custom:sort innerHtml="Color desc" paramValue="color,desc" />
+								<custom:sort innerHtml="Color asc" paramValue="color.color" />
+								<custom:sort innerHtml="Color desc" paramValue="color.color,desc" />
 							</ul>
 						</div>
 					</div>

@@ -8,8 +8,11 @@
 <script type="text/javascript" src="/resources/js/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <script src="/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/resources/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="/resources/css/chosen.min.css">
 <script src="/resources/js/chosen.jquery.min.js"></script>
+<script src="/resources/js/angular.js"></script>
+<script src="/resources/js/dirPagination.js"></script>
 <link rel="stylesheet" href="/resources/css/style.css">
 <script type="text/javascript">
 	$(function() {
@@ -20,20 +23,11 @@
 </head>
 <style>
 body {
-	background: #989898;
-	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%,
-		rgba(0, 0, 0, 0.15) 100%),
-		-webkit-radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%,
-		rgba(0, 0, 0, 0.4) 120%);
-	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%,
-		rgba(0, 0, 0, 0.15) 100%),
-		radial-gradient(at top center, rgba(255, 255, 255, 0.4) 0%,
-		rgba(0, 0, 0, 0.4) 120%);
-	background-blend-mode: multiply, multiply;
-	width: 1024px;
-	padding-bottom: 0px;
-	padding-top: 10px;
-	margin: 0 auto;
+	 background-color: #E1E6EC;
+  background-image: -webkit-linear-gradient(top, #E1E6EC 2%, #F0F4F7 96%), -webkit-radial-gradient(at 50% 100%, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.5) 200%);
+  background-image: linear-gradient(-180deg, #E1E6EC 2%, #F0F4F7 96%), radial-gradient(at 50% 100%, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.5) 200%);
+  background-blend-mode: normal, color-burn; 
+	margin-bottom: 50px;
 }
 
 .navbar {
@@ -77,7 +71,7 @@ body {
 	display: inline-block;
 	cursor: default;
 	width: 24.62%;
-	height: 250px;
+	height: 260px;
 	background-color: #fff;
 	border-radius: 10px;
 	display: inline-block;
@@ -85,8 +79,34 @@ body {
 	margin-top: 10px;
 }
 
+.other-phones {
+	padding: 0px 20px;
+	margin-top: 20px;
+	background: rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.1);
+	border-bottom: 3px solid white;
+}
+
 .photo {
-	margin-bottom: 10px;
+	margin-top: 10%;
+	width: 80%;
+}
+
+.phone-photo-big {
+	margin: 60px 42px;
+	width: 300px;
+}
+
+.photo-background {
+	background-color: #fff;
+}
+
+.specification {
+	margin-top: 20px;
+	background: rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.1);
 }
 
 a:hover {

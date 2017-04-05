@@ -37,30 +37,36 @@ public class UserValidator implements Validator {
 				"Can't be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "",
 				"Can't be empty");
-		if (!REG1.matcher(user.getEmail()).matches()) {
-			errors.rejectValue("email", "", "Error");
-		}
-		if (!REG3.matcher(user.getLogin()).matches()) {
-			errors.rejectValue("login", "", "Error");
-		}
-		if (!REG2.matcher(user.getPhoneNumber()).matches()) {
-			errors.rejectValue("phoneNumber", "", "Error");
-		}
-		if (!REG4.matcher(user.getFirstName()).matches()) {
-			errors.rejectValue("firstName", "", "Error");
-		}
-		if (!REG4.matcher(user.getLastName()).matches()) {
-			errors.rejectValue("lastName", "", "Error");
-		}
+		try {
+			if (!REG1.matcher(user.getEmail()).matches()) {
+				errors.rejectValue("email", "", "Error");
+			}
+			if (!REG3.matcher(user.getLogin()).matches()) {
+				errors.rejectValue("login", "", "Error");
+			}
+			if (!REG2.matcher(user.getPhoneNumber()).matches()) {
+				errors.rejectValue("phoneNumber", "", "Error");
+			}
+			if (!REG4.matcher(user.getFirstName()).matches()) {
+				errors.rejectValue("firstName", "", "Error");
+			}
+			if (!REG4.matcher(user.getLastName()).matches()) {
+				errors.rejectValue("lastName", "", "Error");
+			}
+		
 		if (errors.getFieldError("email") == null
 				&& errors.getFieldError("login") == null
 				&& errors.getFieldError("password") == null
 				&& errors.getFieldError("phoneNumber") == null
 				&& errors.getFieldError("firstName") == null
 				&& errors.getFieldError("lastName") == null) {
-			if (userService.findUnique(user.getLogin()) != null) {
+			User user2 = userService.findUnique(user.getLogin());
+			if (user2 != null & user2.getId() != user.getId()) {
 				errors.rejectValue("phoneNumber", "", "Already exist!");
 			}
+		}
+		} catch (NullPointerException e) {
+			System.out.println("Помилка");
 		}
 	}
 }

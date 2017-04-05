@@ -18,7 +18,9 @@
 				</div>
 				<div class="form-group" style="margin-top: 45px">
 					<div class=" col-md-4 col-md-offset-4">
-						<button type="submit" class="btn btn-success btn-block">Create</button>
+						<button type="submit" class="btn btn-success">Create</button>
+						<a href="/admin/maker/cancel<custom:allParams/>"><button type="button"
+								class="btn btn-danger">Cancel</button></a>
 					</div>
 				</div>
 			</form:form>
@@ -43,8 +45,8 @@
 						Sort <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-						<custom:sort innerHtml="Name asc" paramValue="color" />
-						<custom:sort innerHtml="Name desc" paramValue="color,desc" />
+						<custom:sort innerHtml="Name asc" paramValue="name" />
+						<custom:sort innerHtml="Name desc" paramValue="name,desc" />
 					</ul>
 				</div>
 			</div>

@@ -4,9 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="row">
 	<c:if test="${param.fail}">
-		<div class="col-sm-12 col-xs-12 text-center">Fail to authorize</div>
+		<div class="col-md-12 text-center"  style="margin-top:40px;color:red;">Fail to authorize</div>
 	</c:if>
-	<div class="col-sm-12 col-xs-12">
+	<div class="col-md-6 col-md-offset-3" style="margin-top:20px;">
 		<form:form class="form-horizontal" action="/login" method="POST">
 			<div class="form-group">
 				<label for="login" class="col-sm-2 control-label">Login</label>
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-md-offset-2 col-md-10">
 					<button type="submit" class="btn btn-default">Sign in</button>
 				</div>
 			</div>

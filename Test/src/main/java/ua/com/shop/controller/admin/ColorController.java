@@ -68,6 +68,14 @@ public class ColorController {
 		return "redirect:/admin/color" + getParams(pageable, filter);
 	}
 
+	@GetMapping("/cancel")
+	public String cancel(@ModelAttribute("color") Color color,
+			SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") SimpleFilter filter) {
+		status.setComplete();
+		return "redirect:/admin/color" + getParams(pageable, filter);
+	}
+
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model,
 			@PageableDefault Pageable pageable,

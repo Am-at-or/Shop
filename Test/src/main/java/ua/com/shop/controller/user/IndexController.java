@@ -2,6 +2,7 @@ package ua.com.shop.controller.user;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -20,36 +21,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import ua.com.shop.dto.filter.PhoneFilter;
-import ua.com.shop.dto.form.PhoneForm;
-import ua.com.shop.editor.ColorEditor;
-import ua.com.shop.editor.DisplayResolutionEditor;
-import ua.com.shop.editor.MakerEditor;
-import ua.com.shop.editor.OperatingSystemEditor;
-import ua.com.shop.editor.ProcessorEditor;
-import ua.com.shop.editor.UserEditor;
-import ua.com.shop.entity.Color;
-import ua.com.shop.entity.DisplayResolution;
-import ua.com.shop.entity.Maker;
-import ua.com.shop.entity.OperatingSystem;
 import ua.com.shop.entity.Orders;
 import ua.com.shop.entity.Phone;
-import ua.com.shop.entity.Processor;
 import ua.com.shop.entity.User;
 import ua.com.shop.service.ColorService;
 import ua.com.shop.service.DisplayResolutionService;
 import ua.com.shop.service.MakerService;
 import ua.com.shop.service.OperatingSystemService;
+import ua.com.shop.service.OrdersService;
 import ua.com.shop.service.PhoneService;
 import ua.com.shop.service.ProcessorService;
 import ua.com.shop.service.UserService;
 import ua.com.shop.util.ParamBuilder;
-import ua.com.shop.validator.PhoneValidator;
 import ua.com.shop.validator.UserValidator;
 
 @Controller
-@SessionAttributes({ "phone", "order" })
+@SessionAttributes("order")
 @RequestMapping("/")
 public class IndexController {
 	@Autowired
@@ -73,27 +63,12 @@ public class IndexController {
 	@Autowired
 	private UserService userService;
 
-	@InitBinder("phone")
-	protected void bind(WebDataBinder binder) {
-		binder.registerCustomEditor(Maker.class, new MakerEditor(makerService));
-		binder.registerCustomEditor(DisplayResolution.class,
-				new DisplayResolutionEditor(displayResolutionService));
-		binder.registerCustomEditor(Processor.class, new ProcessorEditor(
-				processorService));
-		binder.registerCustomEditor(OperatingSystem.class,
-				new OperatingSystemEditor(operatingSystemService));
-		binder.registerCustomEditor(Color.class, new ColorEditor(colorService));
-		binder.setValidator(new PhoneValidator(phoneService));
-	}
-
+	@Autowired
+	private OrdersService ordersService;
+	
 	@InitBinder("user")
 	protected void bind1(WebDataBinder binder) {
 		binder.setValidator(new UserValidator(userService));
-	}
-
-	@InitBinder("order")
-	protected void bind2(WebDataBinder binder) {
-		binder.registerCustomEditor(User.class, new UserEditor(userService));
 	}
 
 	@ModelAttribute("order")
@@ -104,11 +79,6 @@ public class IndexController {
 	@ModelAttribute("filter")
 	public PhoneFilter getFilter() {
 		return new PhoneFilter();
-	}
-
-	@ModelAttribute("phone")
-	public PhoneForm getForm() {
-		return new PhoneForm();
 	}
 
 	public String show(Model model, @PageableDefault Pageable pageable,
@@ -125,8 +95,8 @@ public class IndexController {
 		return "user-index";
 	}
 
-	@PostMapping("/addtopackage/{id}")
-	public String addToPackage(Model model, @PageableDefault Pageable pageable,
+	@PostMapping("/addtocart/{id}")
+	public String addToCart(Model model, @PageableDefault Pageable pageable,
 			@PathVariable int id, @ModelAttribute("order") Orders order,
 			@ModelAttribute("filter") PhoneFilter filter) {
 		User user = (User) SecurityContextHolder.getContext()
@@ -135,8 +105,32 @@ public class IndexController {
 		Phone phone = phoneService.findOne(id);
 		if (order.getPhones() == null)
 			order.setPhones(new ArrayList<Phone>());
-		order.getPhones().add(phone);
+		if (!order.getPhones().contains(phone))
+			order.getPhones().add(phone);
 		return show(model, pageable, order, filter);
+	}
+
+	@PostMapping("/deletefromcart/{id}")
+	public String deleteFromCart(Model model, @PathVariable int id,
+			@ModelAttribute("order") Orders order) {
+		order.getPhones().remove(phoneService.findOne(id));
+		return "redirect:/shoppingcart";
+	}
+
+	@RequestMapping("/shoppingcart")
+	public String shoppingcart(Model model,
+			@ModelAttribute("order") Orders order) {
+		model.addAttribute("qwer", order.getPhones());
+		return "user-shoppingcart";
+	}
+
+	@GetMapping("/makeorder")
+	public String makeOrder(@ModelAttribute("order") Orders order,
+			SessionStatus status) {
+		if (order.getPhones() != null && !order.getPhones().isEmpty())
+			ordersService.save(order);
+		status.setComplete();
+		return "redirect:/";
 	}
 
 	private String getParams(Pageable pageable, PhoneFilter filter) {
@@ -265,11 +259,6 @@ public class IndexController {
 		return "admin-admin";
 	}
 
-	@RequestMapping("/shoppingcart")
-	public String shoppingcart(@ModelAttribute("order") Orders order) {
-		return "user-shoppingcart";
-	}
-
 	@RequestMapping("/faq")
 	public String faq() {
 		return "user-faq";
@@ -287,12 +276,18 @@ public class IndexController {
 
 	@RequestMapping("/contacts")
 	public String contacts() {
+
 		return "user-contacts";
 	}
 
 	@RequestMapping("/phone/{id}")
 	public String phone(@PathVariable int id, Model model) {
-		model.addAttribute("phone", phoneService.findOne(id));
+		Phone phone = phoneService.findOne(id);
+		List<Phone> phones = phoneService.findByMaker(phone.getMaker()
+				.getName());
+		phones.remove(phone);
+		model.addAttribute("phone", phone);
+		model.addAttribute("phones", phones);
 		return "user-phone";
 	}
 
@@ -320,4 +315,10 @@ public class IndexController {
 	public String people() {
 		return "user-people";
 	}
+
+	@RequestMapping(value = "/admin/color")
+	public String color() {
+		return "admin-color";
+	}
+
 }

@@ -35,5 +35,7 @@ public interface PhoneService {
 			OperatingSystem operatingSystem, String battery, Color color);
 
 	Page<Phone> findAll(Pageable pageable, PhoneFilter filter);
+	
+	List<Phone> findByMaker(String name);
 
 }

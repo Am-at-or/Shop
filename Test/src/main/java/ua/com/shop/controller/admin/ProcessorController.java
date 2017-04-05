@@ -75,6 +75,14 @@ public class ProcessorController {
 		status.setComplete();
 		return "redirect:/admin/processor" + getParams(pageable, filter);
 	}
+	
+	@GetMapping("/cancel")
+	public String cancel(@ModelAttribute("processor") ProcessorForm processorForm,
+			SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") ProcessorFilter filter) {
+		status.setComplete();
+		return "redirect:/admin/processor" + getParams(pageable, filter);
+	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model,

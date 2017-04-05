@@ -110,6 +110,14 @@ public class PhoneController {
 		return "redirect:/admin/phone" + getParams(pageable, filter);
 	}
 
+	@GetMapping("/cancel")
+	public String cancel(@ModelAttribute("phone") PhoneForm phoneForm,
+			SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") PhoneFilter filter) {
+		status.setComplete();
+		return "redirect:/admin/phone" + getParams(pageable, filter);
+	}
+
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model,
 			@PageableDefault Pageable pageable,

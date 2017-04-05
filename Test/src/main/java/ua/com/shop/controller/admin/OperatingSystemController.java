@@ -77,6 +77,15 @@ public class OperatingSystemController {
 		return "redirect:/admin/operatingsystem" + getParams(pageable, filter);
 	}
 
+	@GetMapping("/cancel")
+	public String cancel(
+			@ModelAttribute("operatingsystem") OperatingSystemForm operatingSystemForm,
+			SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") OperatingSystemFilter filter) {
+		status.setComplete();
+		return "redirect:/admin/operatingsystem" + getParams(pageable, filter);
+	}
+
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model,
 			@PageableDefault Pageable pageable,

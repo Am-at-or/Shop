@@ -1,5 +1,7 @@
 package ua.com.shop.validator;
 
+import java.util.regex.Pattern;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -7,11 +9,14 @@ import org.springframework.validation.Validator;
 import ua.com.shop.dto.form.DisplayResolutionForm;
 import ua.com.shop.service.DisplayResolutionService;
 
-public class DisplayValidator implements Validator {
+public class DisplayResolutionValidator implements Validator {
+	
+	private final static Pattern REG1 = Pattern
+			.compile("([0-9]{1,9})");
 
 	private DisplayResolutionService displayService;
 
-	public DisplayValidator(DisplayResolutionService displayService) {
+	public DisplayResolutionValidator(DisplayResolutionService displayService) {
 		this.displayService = displayService;
 	}
 
@@ -27,6 +32,12 @@ public class DisplayValidator implements Validator {
 				"Can't be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "height", "",
 				"Can't be empty");
+		if (!REG1.matcher(form.getWidth()).matches()) {
+			errors.rejectValue("width", "", "Error");
+		}
+		if (!REG1.matcher(form.getHeight()).matches()) {
+			errors.rejectValue("height", "", "Error");
+		}
 		if (errors.getFieldError("width") == null
 				&& errors.getFieldError("height") == null) {
 			if (displayService.findUnique(form.getWidth(), form.getHeight()) != null) {
